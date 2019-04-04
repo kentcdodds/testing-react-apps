@@ -1,4 +1,4 @@
-// http://localhost:3000/isolated/testing/components/counter
+// http://localhost:3000/counter
 import React from 'react'
 
 function Counter() {

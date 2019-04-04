@@ -1,4 +1,4 @@
-// http://localhost:3000/isolated/testing/components/login-submission
+// http://localhost:3000/login-submission
 //
 // The <LoginSubmission /> component uses our <Login /> component and actually
 // submits the formData to /api/login and redirects the user or shows an error

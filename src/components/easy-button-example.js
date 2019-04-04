@@ -1,4 +1,4 @@
-// http://localhost:3000/isolated/testing/components/easy-button-example
+// http://localhost:3000/easy-button-example
 import React from 'react'
 import EasyButton from './easy-button'
 import {ThemeProvider, useTheme} from './theme'
