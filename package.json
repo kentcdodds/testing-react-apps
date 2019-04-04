@@ -1,0 +1,83 @@
+{
+  "name": "react-testing-workshop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Learn how to test react components and applications",
+  "main": "index.js",
+  "scripts": {
+    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "npm run test -- --coverage",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+    "format": "prettier \"**/*.+(js|json|less|css|html|ts|tsx|md)\" --write",
+    "lint": "eslint .",
+    "validate": "npm-run-all lint test:coverage build",
+    "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
+    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate && node ./scripts/autofill-feedback-email.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "keywords": [],
+  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "cross-spawn": "^6.0.5",
+    "eslint": "^5.16.0",
+    "eslint-config-kentcdodds": "^14.3.1",
+    "husky": "^1.3.1",
+    "inquirer": "^6.2.2",
+    "is-ci-cli": "^1.1.1",
+    "jest-dom": "^3.1.3",
+    "lint-staged": "^8.1.5",
+    "node": "^10.15.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.4",
+    "react-scripts": "^2.1.8",
+    "react-testing-library": "^6.0.4",
+    "test-data-bot": "^0.8.0"
+  },
+  "dependencies": {
+    "@reach/router": "^1.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "kentcdodds",
+      "kentcdodds/import",
+      "kentcdodds/jest",
+      "kentcdodds/react"
+    ],
+    "rules": {
+      "no-alert": "off",
+      "react/prop-types": "off",
+      "jest/no-disabled-tests": "off",
+      "jest/prefer-todo": "off"
+    }
+  },
+  "eslintIgnore": [
+    "coverage",
+    "node_modules",
+    "dist",
+    "scripts/workshop-setup.js",
+    "other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentcdodds/react-testing-workshop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kentcdodds/react-testing-workshop/issues"
+  },
+  "homepage": "https://react-testing-workshop.netlify.com",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
