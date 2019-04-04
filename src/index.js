@@ -2,9 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 function App() {
-  const Component = React.useState(() =>
-    React.lazy(() => import(`./components${window.location.pathname}`)),
-  )[0]
+  const Component = React.useState(() => {
+    if (window.location.pathname) {
+      return React.lazy(() => import(`./components${window.location.pathname}`))
+    } else {
+      return <div>Please go to the URL for one of the components</div>
+    }
+  })[0]
   return (
     <React.Suspense fallback="loading...">
       <div

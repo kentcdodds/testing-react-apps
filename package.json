@@ -62,7 +62,7 @@
   "eslintIgnore": [
     "coverage",
     "node_modules",
-    "dist",
+    "build",
     "scripts/workshop-setup.js",
     "other"
   ],
