@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ErrorBoundary from 'react-error-boundary'
 
 function DefaultComponent() {
   return <div>Please go to the URL for one of the components</div>
@@ -14,20 +15,22 @@ function App() {
     }
   })[0]
   return (
-    <React.Suspense fallback="loading...">
-      <div
-        style={{
-          flex: 1,
-          padding: 20,
-          border: '1px solid',
-          display: 'grid',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Component />
-      </div>
-    </React.Suspense>
+    <div
+      style={{
+        flex: 1,
+        padding: 20,
+        border: '1px solid',
+        display: 'grid',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <ErrorBoundary FallbackComponent={DefaultComponent}>
+        <React.Suspense fallback="loading...">
+          <Component />
+        </React.Suspense>
+      </ErrorBoundary>
+    </div>
   )
 }
 
