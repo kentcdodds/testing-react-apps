@@ -34,7 +34,7 @@ test('submitting the form calls onSubmit with username and password', () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=learn%20react%20testing&e=04&em=
+http://ws.kcd.im/?ws=react%20testing&e=04&em=
 */
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

@@ -69,7 +69,7 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=learn%20react%20testing&e=05&em=
+http://ws.kcd.im/?ws=react%20testing&e=05&em=
 */
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
