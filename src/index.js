@@ -1,9 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ErrorBoundary from 'react-error-boundary'
+import importAll from 'import-all.macro'
+
+const allComponents = importAll.deferred('./components/*.js')
 
 function DefaultComponent() {
-  return <div>Please go to the URL for one of the components</div>
+  return (
+    <div>
+      <div>Please go to the URL for one of the components:</div>
+      <div>
+        <ul>
+          {Object.keys(allComponents).map(key => (
+            <li key={key}>
+              <a href={key.replace(/\.\/components/, '')}>{key}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
 }
 
 function App() {
@@ -27,7 +43,9 @@ function App() {
     >
       <ErrorBoundary FallbackComponent={DefaultComponent}>
         <React.Suspense fallback="loading...">
-          <Component />
+          <div>
+            <Component />
+          </div>
         </React.Suspense>
       </ErrorBoundary>
     </div>
