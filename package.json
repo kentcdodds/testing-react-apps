@@ -31,6 +31,7 @@
     "husky": "^1.3.1",
     "import-all.macro": "^2.0.3",
     "inquirer": "^6.2.2",
+    "is-ci": "^2.0.0",
     "is-ci-cli": "^1.1.1",
     "jest-dom": "^3.1.3",
     "lint-staged": "^8.1.5",
@@ -39,6 +40,7 @@
     "prettier": "^1.16.4",
     "react-scripts": "^2.1.8",
     "react-testing-library": "^6.0.4",
+    "replace-in-file": "^3.4.4",
     "test-data-bot": "^0.8.0"
   },
   "dependencies": {
