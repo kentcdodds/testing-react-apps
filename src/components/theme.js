@@ -1,3 +1,4 @@
+// this one doesn't really make sense to render on its own, so don't bother.
 import React from 'react'
 
 const ThemeContext = React.createContext()
