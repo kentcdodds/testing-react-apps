@@ -108,8 +108,9 @@ node ./scripts/verify
 npm install
 
 # verify the project is ready to run
-npm run build
+npm run lint
 npm run test:coverage
+npm run build
 ```
 
 If any of those scripts fail, please try to work out what went wrong by the
