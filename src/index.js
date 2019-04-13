@@ -1,3 +1,5 @@
+import './hack-fetch'
+import './styles.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ErrorBoundary from 'react-error-boundary'
