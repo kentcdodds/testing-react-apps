@@ -5,8 +5,9 @@
 // message if the request failed.
 //
 // NOTE: that while this is calling `fetch`, we're actually NOT making a real
-// HTTP call in this app. If you checkout `hack-fetch.js` you'll se that we're
-// overriding fetch to serve a fake response for the purposes of our demo app.
+// HTTP call in this app. If you checkout `hack-fetch.js` you'll notice that
+// we're overriding fetch to serve a fake response for the purposes of our demo
+// app.
 // 🚨  In the app you can simulate a failure by using "fail" as the password.
 //     (this does not apply to the tests however).
 

@@ -9,13 +9,14 @@ test('counter increments when the button is clicked', () => {
   // 🐨 append the div to document.body (💰 document.body.appendChild)
   //
   // 🐨 use ReactDOM.render to render the <Counter /> to the div
-  // 🐨 get a reference to the button (💰 div.querySelector)
+  // 🐨 get a reference to the button (💰 document.body.querySelector)
   //
   // 🐨 expect the button's textContent is '0'
   // 🐨 click the button (💰 button.click())
   // 🐨 expect the button's textContent is '1'
   //
   // 🐨 cleanup by removing the div from the page (💰 document.body.removeChild)
+  // 🦉 If you don't cleanup, then it could impact other tests and/or cause a memory leak
 })
 
 // 💯 using .click on a DOM node works fine, but what if you wanted to fire an

@@ -9,6 +9,8 @@ test('submitting the form calls onSubmit with username and password', () => {
   //
   // 🐨 render the login with your handleSubmit function as the onSubmit prop
   // 💰 you'll need the `getByLabelText` and `getByText` utilities from `render`
+  // 💰 getByLabelText can accept a string, regex, or even a function!
+  // 📜 https://testing-library.com/docs/dom-testing-library/api-queries#textmatch
   //
   // 🐨 get the username and password fields via `getByLabelText`
   // 🐨 use fireEvent.change to fire a change event on the username and

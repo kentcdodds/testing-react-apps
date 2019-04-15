@@ -15,6 +15,9 @@ import Login from '../../components/login-submission'
 // 🐨 use jest.mock to mock @reach/router's `navigate` function
 // 📜 https://jestjs.io/docs/en/jest-object#jestmockmodulename-factory-options
 // 💰 return {navigate: jest.fn()}
+// 🦉 Don't try to put `jest.mock` inside any of the functions below. It should
+// only appear at the root-level of this file, and it should never appear within
+// a callback function.
 
 beforeAll(() => {
   jest.spyOn(window, 'fetch')
@@ -67,6 +70,11 @@ Array [
   // 🐨 assert that navigate was called with the right arguments
   // 🐨 assert that localStorage's "token" item is "fake-token"
 })
+
+// 💯 Read up on and try to use jest's __mocks__ directory functionality
+// Note: there's no final example of this because if there were it would mess
+// up your exercise 😅 Make sure to ask me about this!
+// 📜 https://jestjs.io/docs/en/manual-mocks
 
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
