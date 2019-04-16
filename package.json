@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Learn how to test react components and applications",
   "main": "index.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6",
+    "yarn": ">=1"
+  },
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
@@ -14,7 +19,7 @@
     "lint": "eslint .",
     "validate": "npm-run-all lint test:coverage build",
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
-    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate && node ./scripts/autofill-feedback-email.js"
+    "setup": "node ./scripts/setup && npm run validate && node ./scripts/autofill-feedback-email.js"
   },
   "husky": {
     "hooks": {
@@ -60,7 +65,8 @@
       "no-alert": "off",
       "react/prop-types": "off",
       "jest/no-disabled-tests": "off",
-      "jest/prefer-todo": "off"
+      "jest/prefer-todo": "off",
+      "no-console": "off"
     }
   },
   "eslintIgnore": [
