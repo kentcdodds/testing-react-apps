@@ -1,6 +1,6 @@
-// advanced form testing with react-testing-library: mocking HTTP requests
+// advanced form testing with React Testing Library: mocking HTTP requests
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login-submission'
 
 beforeAll(() => {

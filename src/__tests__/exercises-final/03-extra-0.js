@@ -1,6 +1,6 @@
-// simple test with react-testing-library
+// simple test with React Testing Library
 import React from 'react'
-import {render, fireEvent, cleanup} from 'react-testing-library'
+import {render, fireEvent, cleanup} from '@testing-library/react'
 import Counter from '../../components/counter'
 
 afterEach(cleanup)

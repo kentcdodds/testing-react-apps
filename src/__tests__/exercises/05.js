@@ -1,6 +1,6 @@
-// advanced form testing with react-testing-library: mocking HTTP requests
+// advanced form testing with React Testing Library: mocking HTTP requests
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login-submission'
 
 // Frontend unit and integration tests should NOT make real HTTP calls (save
@@ -47,7 +47,7 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   // spinner has an aria-label of "loading..." for accessibility purposes, so
   // 🐨 assert that there is an element labeled "loading" in the document
   // 💰 you can use toBeInTheDocument() from jest-dom
-  // 📜 https://github.com/gnapse/jest-dom#tobeinthedocument
+  // 📜 https://github.com/testing-library/jest-dom#tobeinthedocument
   //
   // 🐨 assert that window.fetch was called appropriately.
   // 💰 There are various ways to do this, here are a few methods that might be

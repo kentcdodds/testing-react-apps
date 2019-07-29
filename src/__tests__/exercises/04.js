@@ -1,6 +1,6 @@
-// form testing with react-testing-library
+// form testing with React Testing Library
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login'
 
 test('submitting the form calls onSubmit with username and password', () => {

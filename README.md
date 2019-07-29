@@ -2,7 +2,7 @@
 
 👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
 workshop repo to teach you about increasing your deploy confidence by using Jest
-and react-testing-library to test your react components.
+and React Testing Library to test your react components.
 
 [![Build Status][build-badge]][build]
 [![AppVeyor Build Status][win-build-badge]][win-build]

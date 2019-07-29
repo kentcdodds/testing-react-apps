@@ -1,6 +1,6 @@
-// advanced form testing with react-testing-library: mocking modules
+// advanced form testing with React Testing Library: mocking modules
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 // 🐨 import the navigate function from the @reach/router module
 // 💰 because you're going to use jest.mock below, the `navigate`, you pull
 // in here will actually be whatever you return from your mock factory
@@ -62,7 +62,7 @@ Array [
   ],
 ]
 `)
-  // 🐨 use react-testing-library's `wait` utility (💰 import it at the top of the file)
+  // 🐨 use React Testing Library's `wait` utility (💰 import it at the top of the file)
   // here to wait until `navigate` has been called once.
   // 💰 make sure this test function supports `await` by making this test function `async`
   // 💰 await wait(() => expect........)
