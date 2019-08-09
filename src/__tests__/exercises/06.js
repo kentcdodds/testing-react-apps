@@ -19,6 +19,18 @@ import Login from '../../components/login-submission'
 // only appear at the root-level of this file, and it should never appear within
 // a callback function.
 
+// 💣 remove this, and you'll see the warning
+beforeAll(() => {
+  // this is here to silence a warning temporarily
+  // we'll fix it in the next exercise
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+// 💣 remove this too
+afterAll(() => {
+  console.error.mockRestore()
+})
+
 beforeAll(() => {
   jest.spyOn(window, 'fetch')
 })

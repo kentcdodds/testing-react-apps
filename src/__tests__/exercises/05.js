@@ -54,6 +54,9 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   // helpful for you with you use `expect(window.fetch)`:
   // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledtimesnumber
   // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledwitharg1-arg2-
+  //
+  // 🦉 By here you'll probably notice a warning, we'll take care of that
+  // in the next test.
 })
 
 // 💯 another way to assert that window.fetch was called properly is to take a

@@ -3,6 +3,10 @@ import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login-submission'
 
+jest.mock('@reach/router', () => {
+  return {navigate: jest.fn()}
+})
+
 beforeAll(() => {
   jest.spyOn(window, 'fetch')
 })
@@ -16,8 +20,9 @@ beforeEach(() => {
 })
 
 test('submitting the form makes a POST to /login and redirects the user to /app', () => {
+  const fakeResponse = Promise.resolve({token: 'fake-token'})
   window.fetch.mockResolvedValueOnce({
-    json: () => Promise.resolve({token: 'fake-token'}),
+    json: () => fakeResponse,
   })
   const {getByLabelText, getByText} = render(<Login />)
   const username = 'chucknorris'
@@ -42,4 +47,14 @@ Array [
   ],
 ]
 `)
+})
+
+beforeAll(() => {
+  // this is here to silence a warning temporarily
+  // we'll fix it in the next exercise
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  console.error.mockRestore()
 })

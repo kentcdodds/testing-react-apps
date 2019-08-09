@@ -6,7 +6,7 @@ import Login from '../../components/login-submission'
 
 jest.mock('@reach/router', () => {
   return {
-    ...require.requireActual('@reach/router'),
+    ...jest.requireActual('@reach/router'),
     navigate: jest.fn(),
   }
 })
