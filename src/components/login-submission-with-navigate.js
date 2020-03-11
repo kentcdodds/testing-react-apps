@@ -12,6 +12,7 @@
 //     (this does not apply to the tests however).
 
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 import Login from './login'
 
 function formSubmissionReducer(state, action) {
@@ -83,6 +84,7 @@ function Spinner() {
 }
 
 function LoginSubmission() {
+  const navigate = useNavigate()
   const [formData, setFormData] = React.useState(null)
   const {loading, responseData, errorMessage} = useFormSubmission({
     endpoint: '/api/login',
@@ -93,8 +95,9 @@ function LoginSubmission() {
   React.useEffect(() => {
     if (token) {
       window.localStorage.setItem('token', token)
+      navigate('/app')
     }
-  }, [token])
+  }, [navigate, token])
 
   if (responseData) {
     return null

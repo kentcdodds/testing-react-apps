@@ -3,10 +3,6 @@ import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login-submission'
 
-jest.mock('@reach/router', () => {
-  return {navigate: jest.fn()}
-})
-
 beforeAll(() => {
   jest.spyOn(window, 'fetch')
 })

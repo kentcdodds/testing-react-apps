@@ -1,13 +1,13 @@
 // advanced form testing with React Testing Library: mocking modules
 import React from 'react'
 import {render, fireEvent, wait} from '@testing-library/react'
-import {navigate} from '@reach/router'
-import Login from '../../components/login-submission'
+import {useNavigate} from 'react-router-dom'
+import Login from '../../components/login-submission-with-navigate'
 
-jest.mock('@reach/router', () => {
+jest.mock('react-router-dom', () => {
   return {
-    ...jest.requireActual('@reach/router'),
-    navigate: jest.fn(),
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
   }
 })
 
@@ -21,11 +21,13 @@ afterAll(() => {
 
 beforeEach(() => {
   window.fetch.mockReset()
-  navigate.mockReset()
+  useNavigate.mockReset()
   window.localStorage.removeItem('token')
 })
 
 test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
+  const mockNavigate = jest.fn()
+  useNavigate.mockImplementation(() => mockNavigate)
   window.fetch.mockResolvedValueOnce({
     json: () => Promise.resolve({token: 'fake-token'}),
   })
@@ -52,7 +54,7 @@ Array [
   ],
 ]
 `)
-  await wait(() => expect(navigate).toHaveBeenCalledTimes(1))
-  expect(navigate).toHaveBeenCalledWith('/app')
+  await wait(() => expect(mockNavigate).toHaveBeenCalledTimes(1))
+  expect(mockNavigate).toHaveBeenCalledWith('/app')
   expect(window.localStorage.getItem('token')).toBe('fake-token')
 })

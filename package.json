@@ -5,9 +5,8 @@
   "description": "Learn how to test react components and applications",
   "main": "index.js",
   "engines": {
-    "node": ">=8",
-    "npm": ">=6",
-    "yarn": ">=1"
+    "node": ">=10",
+    "npm": ">=6"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -30,42 +29,28 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "GPL-3.0",
   "devDependencies": {
-    "cross-spawn": "^6.0.5",
-    "eslint": "^6.1.0",
-    "eslint-config-kentcdodds": "^14.3.4",
-    "husky": "^3.0.3",
-    "inquirer": "^6.5.0",
-    "is-ci": "^2.0.0",
-    "is-ci-cli": "^1.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-kentcdodds": "^14.8.0",
+    "husky": "^4.2.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2",
-    "react-scripts": "^3.0.1",
-    "replace-in-file": "^4.1.2"
+    "prettier": "^1.19.1",
+    "react-scripts": "^3.4.0"
   },
   "dependencies": {
-    "@reach/router": "^1.2.1",
-    "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/react": "^9.0.2",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.5.0",
     "import-all.macro": "^2.0.3",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-error-boundary": "^1.2.5",
+    "react-router": "^6.0.0-alpha.2",
+    "react-router-dom": "^6.0.0-alpha.2",
     "test-data-bot": "^0.8.0"
   },
   "eslintConfig": {
     "extends": [
-      "kentcdodds",
-      "kentcdodds/import",
-      "kentcdodds/jest",
-      "kentcdodds/react"
-    ],
-    "rules": {
-      "no-alert": "off",
-      "react/prop-types": "off",
-      "jest/no-disabled-tests": "off",
-      "jest/prefer-todo": "off",
-      "no-console": "off"
-    }
+      "react-app"
+    ]
   },
   "eslintIgnore": [
     "coverage",

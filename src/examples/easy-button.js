@@ -1,7 +1,7 @@
 // http://localhost:3000/easy-button-example
 import React from 'react'
-import EasyButton from './easy-button'
-import {ThemeProvider, useTheme} from './theme'
+import EasyButton from '../components/easy-button'
+import {ThemeProvider, useTheme} from '../components/theme'
 
 function App() {
   return (

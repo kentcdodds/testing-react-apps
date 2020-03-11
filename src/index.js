@@ -5,17 +5,26 @@ import ReactDOM from 'react-dom'
 import ErrorBoundary from 'react-error-boundary'
 import importAll from 'import-all.macro'
 
-const allComponents = importAll.deferred('./components/*.js')
+const allDynamicImports = importAll.deferred('./examples/*.js')
+const lazyComponents = {}
+
+for (const modulePath in allDynamicImports) {
+  if (allDynamicImports.hasOwnProperty(modulePath)) {
+    lazyComponents[
+      modulePath.replace('./examples', '').replace(/.js$/, '')
+    ] = React.lazy(allDynamicImports[modulePath])
+  }
+}
 
 function DefaultComponent() {
   return (
     <div>
-      <div>Please go to the URL for one of the components:</div>
+      <div>Please go to the URL for one of the examples:</div>
       <div>
         <ul>
-          {Object.keys(allComponents).map(key => (
+          {Object.keys(lazyComponents).map(key => (
             <li key={key}>
-              <a href={key.replace(/\.\/components/, '')}>{key}</a>
+              <a href={key}>{key}</a>
             </li>
           ))}
         </ul>
@@ -27,7 +36,7 @@ function DefaultComponent() {
 function App() {
   const Component = React.useState(() => {
     if (window.location.pathname.length > 1) {
-      return React.lazy(() => import(`./components${window.location.pathname}`))
+      return lazyComponents[window.location.pathname]
     } else {
       return DefaultComponent
     }

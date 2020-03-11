@@ -1,20 +1,23 @@
 // advanced form testing with React Testing Library: mocking modules
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
-// 🐨 import the navigate function from the @reach/router module
+// 🐨 import the useNavigate hook from the react-router-dom module
 // 💰 because you're going to use jest.mock below, the `navigate`, you pull
 // in here will actually be whatever you return from your mock factory
 // function below.
-import Login from '../../components/login-submission'
 
-// we don't actually have anywhere for @reach/router to navigate in our tests
+// 🐨 swap these imports so you get the new navigate feature
+import Login from '../../components/login-submission'
+// import Login from '../../components/login-submission-with-navigate'
+
+// we don't actually have anywhere for react-router-dom to navigate in our tests
 // so it actually doesn't navigate anywhere which is fine, except we want to
 // validate that our code is actually doing a navigation and that it's
 // navigating to where we expect.
 
-// 🐨 use jest.mock to mock @reach/router's `navigate` function
+// 🐨 use jest.mock to mock react-router-dom's `useNavigate` hook
 // 📜 https://jestjs.io/docs/en/jest-object#jestmockmodulename-factory-options
-// 💰 return {navigate: jest.fn()}
+// 💰 return {useNavigate: jest.fn()}
 // 🦉 Don't try to put `jest.mock` inside any of the functions below. It should
 // only appear at the root-level of this file, and it should never appear within
 // a callback function.
