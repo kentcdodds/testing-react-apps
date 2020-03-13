@@ -1,13 +1,13 @@
-// Avoid implementation details
+// simple test with React Testing Library
+// 💯 use @testing-library/jest-dom
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 
 test('counter increments when the button is clicked', () => {
-  render(<Counter />)
-  const increment = screen.getByText(/increment/i)
-  const decrement = screen.getByText(/decrement/i)
-  const message = screen.getByText(/current count/i)
+  const {container} = render(<Counter />)
+  const [increment, decrement] = container.querySelectorAll('button')
+  const message = container.firstChild.querySelector('div')
 
   expect(message).toHaveTextContent('Current count: 0')
   fireEvent.click(increment)

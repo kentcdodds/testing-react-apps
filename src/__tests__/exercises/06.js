@@ -1,59 +1,62 @@
-// advanced form testing with React Testing Library: mocking modules
+// advanced form testing with React Testing Library: mocking HTTP requests
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
-// 🐨 import the useNavigate hook from the react-router-dom module
-// 💰 because you're going to use jest.mock below, the `navigate`, you pull
-// in here will actually be whatever you return from your mock factory
-// function below.
-
-// 🐨 swap these imports so you get the new navigate feature
 import Login from '../../components/login-submission'
-// import Login from '../../components/login-submission-with-navigate'
 
-// we don't actually have anywhere for react-router-dom to navigate in our tests
-// so it actually doesn't navigate anywhere which is fine, except we want to
-// validate that our code is actually doing a navigation and that it's
-// navigating to where we expect.
-
-// 🐨 use jest.mock to mock react-router-dom's `useNavigate` hook
-// 📜 https://jestjs.io/docs/en/jest-object#jestmockmodulename-factory-options
-// 💰 return {useNavigate: jest.fn()}
-// 🦉 Don't try to put `jest.mock` inside any of the functions below. It should
-// only appear at the root-level of this file, and it should never appear within
-// a callback function.
-
-// 💣 remove this, and you'll see the warning
-beforeAll(() => {
-  // this is here to silence a warning temporarily
-  // we'll fix it in the next exercise
-  jest.spyOn(console, 'error').mockImplementation(() => {})
+// 💣 delete below the code below
+// It was here to silence warnings temporarily.
+// now we're going to fix those problems.
+beforeEach(() => {
+  jest
+    .spyOn(window, 'fetch')
+    .mockImplementation(() => Promise.resolve({json: () => Promise.resolve()}))
 })
 
-// 💣 remove this too
-afterAll(() => {
-  console.error.mockRestore()
-})
-
-beforeAll(() => {
-  jest.spyOn(window, 'fetch')
-})
-
-afterAll(() => {
+afterEach(() => {
   window.fetch.mockRestore()
 })
 
-beforeEach(() => {
-  window.fetch.mockReset()
-  // 🐨 reset the navigate mock (just like we're doing for window.fetch)
-  // 🐨 we'll also want to remove `token` from localStorage so that's clean.
-  // 💰 window.localStorage.removeItem('token')
+beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {})
 })
 
-// 🐨 we're going to be doing some async/await in here, so make this function async:
+afterAll(() => {
+  console.error.mockRestore()
+})
+// 💣 delete above
+
+// Frontend unit and integration tests should NOT make real HTTP calls (save
+// that for E2E). So in this exercise you're going to learn how to mock out
+// `fetch` and provide a set response.
+
+// before any of the tests in this file run, we want to make window.fetch a
+// mock function
+beforeAll(() => {
+  // 🐨 use `jest.spyOn` to spy on the window's `fetch` property
+  // 📜 https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname
+})
+
+// after all the tests are done, we want to restore window.fetch to it's
+// original implementation
+afterAll(() => {
+  // 🐨 use mockRestore() to restore window.fetch to its original implementation
+  // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockrestore
+})
+
+// before each individual test in this file, we want to reset window.fetch
+// so it clears all the calls information it's stored from other calls.
+beforeEach(() => {
+  // 🐨 use mockReset() to reset the call track information for window.fetch
+  // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockreset
+})
+
 test('submitting the form makes a POST to /login and redirects the user to /app', () => {
-  window.fetch.mockResolvedValueOnce({
-    json: () => Promise.resolve({token: 'fake-token'}),
-  })
+  // here we want to tell jest that the next time window.fetch is called, it
+  // should return a promise that resolves to a value we specify:
+  // 🐨 using `mockResolvedValueOnce`, have window.fetch return this next time
+  // it's called: `{json: async () => ({token: 'fake-token'})}`
+  // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockresolvedvalueoncevalue
+
   const {getByLabelText, getByText} = render(<Login />)
   const username = 'chucknorris'
   const password = 'i need no password'
@@ -62,34 +65,27 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   fireEvent.change(getByLabelText(/password/i), {target: {value: password}})
   fireEvent.click(getByText(/submit/i))
 
-  expect(getByLabelText(/loading/i)).toBeInTheDocument()
-  expect(window.fetch.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "/api/login",
-    Object {
-      "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
-      "headers": Object {
-        "content-type": "application/json;charset=UTF-8",
-      },
-      "method": "POST",
-    },
-  ],
-]
-`)
-  // 🐨 use React Testing Library's `wait` utility (💰 import it at the top of the file)
-  // here to wait until `navigate` has been called once.
-  // 💰 make sure this test function supports `await` by making this test function `async`
-  // 💰 await wait(() => expect........)
+  // as soon as the user hits submit, we render a spinner to the screen. That
+  // spinner has an aria-label of "loading..." for accessibility purposes, so
+  // 🐨 assert that there is an element labeled "loading" in the document
+  // 💰 you can use toBeInTheDocument() from jest-dom
+  // 📜 https://github.com/testing-library/jest-dom#tobeinthedocument
   //
-  // 🐨 assert that navigate was called with the right arguments
-  // 🐨 assert that localStorage's "token" item is "fake-token"
+  // 🐨 assert that window.fetch was called appropriately.
+  // 💰 There are various ways to do this, here are a few methods that might be
+  // helpful for you with you use `expect(window.fetch)`:
+  // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledtimesnumber
+  // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledwitharg1-arg2-
+  //
+  // 🦉 By here you'll probably notice a warning, we'll take care of that
+  // in the next test.
 })
 
-// 💯 Read up on and try to use jest's __mocks__ directory functionality
-// Note: there's no final example of this because if there were it would mess
-// up your exercise 😅 Make sure to ask me about this!
-// 📜 https://jestjs.io/docs/en/manual-mocks
+// 💯 another way to assert that window.fetch was called properly is to take a
+// snapshot of it's `.mock.calls` property.
+// 📜 Read up on `.mock.calls`: https://jestjs.io/docs/en/mock-function-api#mockfnmockcalls
+// 📜 Read up on `toMatchInlineSnapshot`: https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
+// Use an inline snapshot to verify that window.fetch was called properly.
 
 //////// Elaboration & Feedback /////////
 // When you've finished with the exercises:
@@ -98,7 +94,7 @@ Array [
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=react%20testing&e=06&em=
+http://ws.kcd.im/?ws=react%20testing&e=05&em=
 */
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!

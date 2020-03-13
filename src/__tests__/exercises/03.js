@@ -1,11 +1,11 @@
 // simple test with React Testing Library
 import React from 'react'
 import ReactDOM from 'react-dom'
-// 🐨 import the `render`, `fireEvent`, and `cleanup` utilities from '@testing-library/react'
+// 🐨 import the `render` and `fireEvent` utilities from '@testing-library/react'
 import Counter from '../../components/counter'
 
 test('counter increments when the button is clicked', () => {
-  // 🐨 remove these two lines, React Testing Library will create the div for you
+  // 💣 remove these two lines, React Testing Library will create the div for you
   const div = document.createElement('div')
   document.body.appendChild(div)
 
@@ -19,19 +19,26 @@ test('counter increments when the button is clicked', () => {
 
   // 🐨 instead of `div` here you'll want to use the `container` you get back
   // from React Testing Library
-  const button = div.querySelector('button')
+  const [increment, decrement] = div.querySelectorAll('button')
+  const message = div.firstChild.querySelector('div')
 
-  expect(button.textContent).toBe('0')
+  expect(message.textContent).toBe('Current count: 0')
 
   // 🐨 replace the next two statements with `fireEvent.click(button)`
-  const clickEvent = new MouseEvent('click', {
+  const incrementClickEvent = new MouseEvent('click', {
     bubbles: true,
     cancelable: true,
     button: 0,
   })
-  button.dispatchEvent(clickEvent)
-
-  expect(button.textContent).toBe('1')
+  increment.dispatchEvent(incrementClickEvent)
+  expect(message.textContent).toBe('Current count: 1')
+  const decrementClickEvent = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    button: 0,
+  })
+  decrement.dispatchEvent(decrementClickEvent)
+  expect(message.textContent).toBe('Current count: 0')
 
   // 🐨 replace this with `cleanup()` from React Testing Library
   document.body.removeChild(div)

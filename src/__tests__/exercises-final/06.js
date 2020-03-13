@@ -1,60 +1,56 @@
-// advanced form testing with React Testing Library: mocking modules
+// advanced form testing with React Testing Library: mocking HTTP requests
 import React from 'react'
-import {render, fireEvent, wait} from '@testing-library/react'
-import {useNavigate} from 'react-router-dom'
-import Login from '../../components/login-submission-with-navigate'
-
-jest.mock('react-router-dom', () => {
-  return {
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
-  }
-})
-
-beforeAll(() => {
-  jest.spyOn(window, 'fetch')
-})
-
-afterAll(() => {
-  window.fetch.mockRestore()
-})
-
-beforeEach(() => {
-  window.fetch.mockReset()
-  useNavigate.mockReset()
-  window.localStorage.removeItem('token')
-})
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import Login from '../../components/login-submission'
 
 test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const mockNavigate = jest.fn()
-  useNavigate.mockImplementation(() => mockNavigate)
+  const fakeResponse = Promise.resolve({token: 'fake-token'})
   window.fetch.mockResolvedValueOnce({
-    json: () => Promise.resolve({token: 'fake-token'}),
+    json: () => fakeResponse,
   })
-  const {getByLabelText, getByText} = render(<Login />)
+  render(<Login />)
   const username = 'chucknorris'
   const password = 'i need no password'
 
-  fireEvent.change(getByLabelText(/username/i), {target: {value: username}})
-  fireEvent.change(getByLabelText(/password/i), {target: {value: password}})
-  fireEvent.click(getByText(/submit/i))
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+  await userEvent.click(screen.getByText(/submit/i))
 
-  expect(getByLabelText(/loading/i)).toBeInTheDocument()
+  await screen.findByLabelText(/loading/i)
+
   expect(window.fetch.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "/api/login",
-    Object {
-      "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
-      "headers": Object {
-        "content-type": "application/json;charset=UTF-8",
-      },
-      "method": "POST",
-    },
-  ],
-]
-`)
-  await wait(() => expect(mockNavigate).toHaveBeenCalledTimes(1))
-  expect(mockNavigate).toHaveBeenCalledWith('/app')
-  expect(window.localStorage.getItem('token')).toBe('fake-token')
+    Array [
+      Array [
+        "/api/login",
+        Object {
+          "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
+          "headers": Object {
+            "content-type": "application/json;charset=UTF-8",
+          },
+          "method": "POST",
+        },
+      ],
+    ]
+  `)
+})
+
+// the code below is here to silence a warning temporarily
+// we'll fix it in the next exercise
+beforeEach(() => {
+  jest
+    .spyOn(window, 'fetch')
+    .mockImplementation(() => Promise.resolve({json: () => Promise.resolve()}))
+})
+
+afterEach(() => {
+  window.fetch.mockRestore()
+})
+
+beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  console.error.mockRestore()
 })

@@ -1,15 +1,16 @@
 // simple test with React Testing Library
 import React from 'react'
-import {render, fireEvent, cleanup} from '@testing-library/react'
+import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 
 test('counter increments when the button is clicked', () => {
   const {container} = render(<Counter />)
-  const button = container.querySelector('button')
+  const [increment, decrement] = container.querySelectorAll('button')
+  const message = container.firstChild.querySelector('div')
 
-  expect(button.textContent).toBe('0')
-  fireEvent.click(button)
-  expect(button.textContent).toBe('1')
-
-  cleanup()
+  expect(message.textContent).toBe('Current count: 0')
+  fireEvent.click(increment)
+  expect(message.textContent).toBe('Current count: 1')
+  fireEvent.click(decrement)
+  expect(message.textContent).toBe('Current count: 0')
 })

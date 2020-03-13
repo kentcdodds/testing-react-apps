@@ -11,8 +11,9 @@
   "scripts": {
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage": "npm run test -- --coverage --watchAll=false",
+    "test": "is-ci \"test:coverage\" \"test:watch\"",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "format": "prettier \"**/*.+(js|json|less|css|html|ts|tsx|md)\" --write",
     "lint": "eslint .",
@@ -26,19 +27,11 @@
     }
   },
   "keywords": [],
-  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0",
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-kentcdodds": "^14.8.0",
-    "husky": "^4.2.3",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "react-scripts": "^3.4.0"
-  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^10.0.1",
+    "@testing-library/user-event": "^10.0.0",
     "import-all.macro": "^2.0.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -47,8 +40,26 @@
     "react-router-dom": "^6.0.0-alpha.2",
     "test-data-bot": "^0.8.0"
   },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-kentcdodds": "^14.8.0",
+    "husky": "^4.2.3",
+    "is-ci-cli": "^2.0.0",
+    "jest": "^25.1.0",
+    "jest-watch-select-projects": "^2.0.0",
+    "jest-watch-typeahead": "^0.4.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "react-scripts": "^3.4.0"
+  },
   "eslintConfig": {
     "extends": [
+      "react-app"
+    ]
+  },
+  "babel": {
+    "presets": [
       "react-app"
     ]
   },

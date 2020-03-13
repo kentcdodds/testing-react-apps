@@ -1,34 +1,54 @@
-// testing with context and a custom render method
+// advanced form testing with React Testing Library: mocking modules
 import React from 'react'
-import {render} from '@testing-library/react'
-import {ThemeProvider} from '../../components/theme'
-import EasyButton from '../../components/easy-button'
+import {render, screen, waitFor} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import {useNavigate} from 'react-router-dom'
+import Login from '../../components/login-submission-with-navigate'
 
-function renderWithTheme(ui, {theme = 'light', ...options}) {
-  const Wrapper = ({children}) => (
-    <ThemeProvider value={[theme, () => {}]}>{children}</ThemeProvider>
-  )
-  return render(ui, {wrapper: Wrapper, ...options})
-}
-
-test('renders with the light styles for the light theme', () => {
-  const {getByText} = renderWithTheme(<EasyButton>Easy</EasyButton>, {
-    theme: 'light',
-  })
-  const button = getByText(/easy/i)
-  expect(button).toHaveStyle(`
-    background-color: white;
-    color: black;
-  `)
+jest.mock('react-router-dom', () => {
+  return {
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+  }
 })
 
-test('renders with the dark styles for the dark theme', () => {
-  const {getByText} = renderWithTheme(<EasyButton>Easy</EasyButton>, {
-    theme: 'dark',
+beforeEach(() => {
+  useNavigate.mockReset()
+  window.localStorage.removeItem('token')
+})
+
+test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
+  const mockNavigate = jest.fn()
+  useNavigate.mockImplementation(() => mockNavigate)
+  window.fetch.mockResolvedValueOnce({
+    json: () => Promise.resolve({token: 'fake-token'}),
   })
-  const button = getByText(/easy/i)
-  expect(button).toHaveStyle(`
-    background-color: black;
-    color: white;
+  render(<Login />)
+  const username = 'chucknorris'
+  const password = 'i need no password'
+
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+  await userEvent.click(screen.getByText(/submit/i))
+
+  await screen.findByLabelText(/loading/i)
+
+  expect(window.fetch.mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "/api/login",
+        Object {
+          "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
+          "headers": Object {
+            "content-type": "application/json;charset=UTF-8",
+          },
+          "method": "POST",
+        },
+      ],
+    ]
   `)
+
+  await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(1))
+  expect(mockNavigate).toHaveBeenCalledWith('/app')
+  expect(window.localStorage.getItem('token')).toBe('fake-token')
 })
