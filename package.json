@@ -19,7 +19,7 @@
     "lint": "eslint .",
     "validate": "npm-run-all --parallel lint test:coverage build",
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
-    "setup": "node ./scripts/setup && npm run validate && node ./scripts/autofill-feedback-email.js"
+    "setup": "node ./scripts/setup"
   },
   "husky": {
     "hooks": {
