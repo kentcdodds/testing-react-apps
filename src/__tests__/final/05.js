@@ -1,4 +1,4 @@
-// advanced form testing with React Testing Library: mocking HTTP requests
+// mocking HTTP requests
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'

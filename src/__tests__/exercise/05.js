@@ -1,4 +1,4 @@
-// advanced form testing with React Testing Library: mocking HTTP requests
+// mocking HTTP requests
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login-submission'
@@ -86,18 +86,3 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
 // 📜 Read up on `.mock.calls`: https://jestjs.io/docs/en/mock-function-api#mockfnmockcalls
 // 📜 Read up on `toMatchInlineSnapshot`: https://jestjs.io/docs/en/snapshot-testing#inline-snapshots
 // Use an inline snapshot to verify that window.fetch was called properly.
-
-//////// Elaboration & Feedback /////////
-// When you've finished with the exercises:
-// 1. Copy the URL below into your browser and fill out the form
-// 2. remove the `.skip` from the test below
-// 3. Change submitted from `false` to `true`
-// 4. And you're all done!
-/*
-http://ws.kcd.im/?ws=react%20testing&e=05&em=
-*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
-  expect(submitted).toBe(true)
-})
-////////////////////////////////

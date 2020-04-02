@@ -1,4 +1,5 @@
 // simple test with ReactDOM
+// 💯 use dispatchEvent
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Counter from '../../components/counter'
@@ -8,7 +9,7 @@ test('counter increments when the button is clicked', () => {
   document.body.appendChild(div)
 
   ReactDOM.render(<Counter />, div)
-  const [increment, decrement] = div.querySelectorAll('button')
+  const [decrement, increment] = div.querySelectorAll('button')
   const message = div.firstChild.querySelector('div')
 
   expect(message.textContent).toBe('Current count: 0')

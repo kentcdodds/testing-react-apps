@@ -5,7 +5,7 @@ import Counter from '../../components/counter'
 
 test('counter increments when the button is clicked', () => {
   const {container} = render(<Counter />)
-  const [increment, decrement] = container.querySelectorAll('button')
+  const [decrement, increment] = container.querySelectorAll('button')
   const message = container.firstChild.querySelector('div')
 
   expect(message.textContent).toBe('Current count: 0')

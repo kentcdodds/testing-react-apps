@@ -1,4 +1,4 @@
-// form testing with React Testing Library
+// form testing
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Login from '../../components/login'
@@ -28,20 +28,5 @@ test('submitting the form calls onSubmit with username and password', () => {
 // correctly:
 // `jest.fn()`: 📜 https://jestjs.io/docs/en/mock-function-api
 // `toHaveBeenCalledWith`: 📜 https://jestjs.io/docs/en/expect#tohavebeencalledwitharg1-arg2-
-
-//////// Elaboration & Feedback /////////
-// When you've finished with the exercises:
-// 1. Copy the URL below into your browser and fill out the form
-// 2. remove the `.skip` from the test below
-// 3. Change submitted from `false` to `true`
-// 4. And you're all done!
-/*
-http://ws.kcd.im/?ws=react%20testing&e=04&em=
-*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
-  expect(submitted).toBe(true)
-})
-////////////////////////////////
 
 /* eslint no-unused-vars:0 */

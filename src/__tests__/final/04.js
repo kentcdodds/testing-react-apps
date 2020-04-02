@@ -1,4 +1,4 @@
-// form testing with React Testing Library
+// form testing
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'

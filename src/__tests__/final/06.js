@@ -1,4 +1,4 @@
-// advanced form testing with React Testing Library: mocking modules
+// mocking modules
 import React from 'react'
 import {render, screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'

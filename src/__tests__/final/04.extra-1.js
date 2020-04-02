@@ -1,4 +1,4 @@
-// form testing with React Testing Library
+// form testing
 // 💯 use a jest mock function
 import React from 'react'
 import {render, screen} from '@testing-library/react'

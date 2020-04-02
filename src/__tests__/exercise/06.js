@@ -1,4 +1,4 @@
-// advanced form testing with React Testing Library: mocking modules
+// mocking modules
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 // 🐨 import the useNavigate hook from the react-router-dom module
@@ -81,18 +81,3 @@ Array [
 // Note: there's no final example of this because if there were it would mess
 // up your exercise 😅 Make sure to ask me about this!
 // 📜 https://jestjs.io/docs/en/manual-mocks
-
-//////// Elaboration & Feedback /////////
-// When you've finished with the exercises:
-// 1. Copy the URL below into your browser and fill out the form
-// 2. remove the `.skip` from the test below
-// 3. Change submitted from `false` to `true`
-// 4. And you're all done!
-/*
-http://ws.kcd.im/?ws=react%20testing&e=06&em=
-*/
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
-  expect(submitted).toBe(true)
-})
-////////////////////////////////
