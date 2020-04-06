@@ -24,10 +24,4 @@ test('counter increments when the button is clicked', () => {
   // 🦉 If you don't cleanup, then it could impact other tests and/or cause a memory leak
 })
 
-// 💯 using .click on a DOM node works fine, but what if you wanted to fire an
-// event that doesn't have a dedicated method (like mouseover). Rather than
-// use `button.click()`, try using `button.dispatchEvent`:
-// 📜 https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
-// NOTE: Make sure that your event config sets `bubbles: true`
-
 /* eslint no-unused-vars:0 */
