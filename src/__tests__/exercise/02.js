@@ -40,16 +40,6 @@ test('counter increments when the button is clicked', () => {
   decrement.dispatchEvent(decrementClickEvent)
   expect(message.textContent).toBe('Current count: 0')
 
-  // 🐨 replace this with `cleanup()` from React Testing Library
+  // 💣 remove this. React Testing Library does this automatically!
   document.body.removeChild(div)
 })
-
-// 💯 you'll want to cleanup after every test in this file, so you can use
-// a utility in Jest to automatically run the `cleanup` function after each
-// test. Read about it here and implement it at the top of the file:
-// 📜 https://jestjs.io/docs/en/setup-teardown
-
-// 💯 this project has @testing-library/jest-dom installed and configured. Swap
-// `expect(button.textContent).toBe('0')` with
-// `expect(button).toHaveTextContent('0')` and compare the error messages you
-// get for those assertions.
