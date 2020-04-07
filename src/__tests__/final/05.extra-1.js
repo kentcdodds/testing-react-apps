@@ -1,28 +1,15 @@
-// mocking modules
+// mocking HTTP requests
+// 💯 use toMatchInlineSnapshot
 // http://localhost:3000/login-submission
 import React from 'react'
-import {render, screen, waitFor} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import {useNavigate} from 'react-router-dom'
-import Login from '../../components/login-submission-with-navigate'
-
-jest.mock('react-router-dom', () => {
-  return {
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
-  }
-})
-
-beforeEach(() => {
-  useNavigate.mockReset()
-  window.localStorage.removeItem('token')
-})
+import Login from '../../components/login-submission'
 
 test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const mockNavigate = jest.fn()
-  useNavigate.mockImplementation(() => mockNavigate)
+  const fakeResponse = Promise.resolve({token: 'fake-token'})
   window.fetch.mockResolvedValueOnce({
-    json: () => Promise.resolve({token: 'fake-token'}),
+    json: () => fakeResponse,
   })
   render(<Login />)
   const username = 'chucknorris'
@@ -48,8 +35,4 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
       ],
     ]
   `)
-
-  await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(1))
-  expect(mockNavigate).toHaveBeenCalledWith('/app')
-  expect(window.localStorage.getItem('token')).toBe('fake-token')
 })

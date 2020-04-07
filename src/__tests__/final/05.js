@@ -20,38 +20,10 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
 
   await screen.findByLabelText(/loading/i)
 
-  expect(window.fetch.mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
-        "/api/login",
-        Object {
-          "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
-          "headers": Object {
-            "content-type": "application/json;charset=UTF-8",
-          },
-          "method": "POST",
-        },
-      ],
-    ]
-  `)
-})
-
-// the code below is here to silence a warning temporarily
-// we'll fix it in the next exercise
-beforeEach(() => {
-  jest
-    .spyOn(window, 'fetch')
-    .mockImplementation(() => Promise.resolve({json: () => Promise.resolve()}))
-})
-
-afterEach(() => {
-  window.fetch.mockRestore()
-})
-
-beforeAll(() => {
-  jest.spyOn(console, 'error').mockImplementation(() => {})
-})
-
-afterAll(() => {
-  console.error.mockRestore()
+  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
+    method: 'POST',
+    body: JSON.stringify({username, password}),
+    headers: {'content-type': 'application/json'},
+  })
+  expect(window.fetch).toHaveBeenCalledTimes(1)
 })

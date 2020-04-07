@@ -5,15 +5,10 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect',
-    path.join(__dirname, 'test/setup'),
+    path.join(__dirname, 'src/test/setup'),
   ],
   clearMocks: true,
-  moduleDirectories: [
-    'node_modules',
-    path.join(__dirname, '../src'),
-    'shared',
-    __dirname,
-  ],
+  moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',

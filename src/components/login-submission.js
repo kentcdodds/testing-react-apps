@@ -56,7 +56,7 @@ function useFormSubmission({endpoint, data}) {
           method: 'POST',
           body: fetchBody,
           headers: {
-            'content-type': 'application/json;charset=UTF-8',
+            'content-type': 'application/json',
           },
         })
         .then(r => r.json())

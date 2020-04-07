@@ -62,7 +62,7 @@ Array [
     Object {
       "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
       "headers": Object {
-        "content-type": "application/json;charset=UTF-8",
+        "content-type": "application/json",
       },
       "method": "POST",
     },
