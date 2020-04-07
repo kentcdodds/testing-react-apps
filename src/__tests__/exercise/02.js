@@ -1,4 +1,5 @@
 // simple test with React Testing Library
+// http://localhost:3000/counter
 import React from 'react'
 import ReactDOM from 'react-dom'
 // 🐨 import the `render` and `fireEvent` utilities from '@testing-library/react'

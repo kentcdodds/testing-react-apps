@@ -1,4 +1,5 @@
 // Avoid implementation details
+// http://localhost:3000/counter
 import React from 'react'
 // 🐨 add `screen` to the import here:
 import {render, fireEvent} from '@testing-library/react'

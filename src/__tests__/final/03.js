@@ -1,4 +1,5 @@
 // Avoid implementation details
+// http://localhost:3000/counter
 import React from 'react'
 import {render, screen, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
