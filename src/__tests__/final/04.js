@@ -14,7 +14,7 @@ test('submitting the form calls onSubmit with username and password', async () =
 
   await userEvent.type(screen.getByLabelText(/username/i), username)
   await userEvent.type(screen.getByLabelText(/password/i), password)
-  await userEvent.click(screen.getByText(/submit/i))
+  userEvent.click(screen.getByText(/submit/i))
 
   expect(submittedData).toEqual({
     username,

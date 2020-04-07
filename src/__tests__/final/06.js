@@ -30,7 +30,7 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
 
   await userEvent.type(screen.getByLabelText(/username/i), username)
   await userEvent.type(screen.getByLabelText(/password/i), password)
-  await userEvent.click(screen.getByText(/submit/i))
+  userEvent.click(screen.getByText(/submit/i))
 
   await screen.findByLabelText(/loading/i)
 
