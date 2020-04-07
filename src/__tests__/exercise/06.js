@@ -1,20 +1,18 @@
 // mocking modules
 // http://localhost:3000/login-submission
+
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
+// 🐨 also import "waitFor" from "@testing-library/react"
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 // 🐨 import the useNavigate hook from the react-router-dom module
-// 💰 because you're going to use jest.mock below, the `navigate`, you pull
+// 💰 because you're going to use jest.mock below, the `useNavigate`, you pull
 // in here will actually be whatever you return from your mock factory
 // function below.
 
 // 🐨 swap these imports so you get the new navigate feature
 import Login from '../../components/login-submission'
 // import Login from '../../components/login-submission-with-navigate'
-
-// we don't actually have anywhere for react-router-dom to navigate in our tests
-// so it actually doesn't navigate anywhere which is fine, except we want to
-// validate that our code is actually doing a navigation and that it's
-// navigating to where we expect.
 
 // 🐨 use jest.mock to mock react-router-dom's `useNavigate` hook
 // 📜 https://jestjs.io/docs/en/jest-object#jestmockmodulename-factory-options
@@ -36,49 +34,52 @@ afterAll(() => {
 })
 
 beforeEach(() => {
-  // 🐨 reset the navigate mock (just like we're doing for window.fetch)
+  // 🐨 reset the useNavigate mock using .mockReset()
   // 🐨 we'll also want to remove `token` from localStorage so that's clean.
   // 💰 window.localStorage.removeItem('token')
 })
 
-// 🐨 we're going to be doing some async/await in here, so make this function async:
-test('submitting the form makes a POST to /login and redirects the user to /app', () => {
+test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
+  // 🐨 create a mock jest function (💰 `jest.fn()`) and assign it to "mockNavigate"
+  // 🐨 take `useNavigate` (which is a mock function) and mock it's
+  //    implementation to return your mockNavigate variable
+  // 🦉 This means that when the source code calls useNavigate, it will get
+  //    your mockNavigate function and it will call that function. Then you
+  //    can assert it was called correctly.
+  const fakeResponse = Promise.resolve({token: 'fake-token'})
   window.fetch.mockResolvedValueOnce({
-    json: () => Promise.resolve({token: 'fake-token'}),
+    json: () => fakeResponse,
   })
-  const {getByLabelText, getByText} = render(<Login />)
+  render(<Login />)
   const username = 'chucknorris'
   const password = 'i need no password'
 
-  fireEvent.change(getByLabelText(/username/i), {target: {value: username}})
-  fireEvent.change(getByLabelText(/password/i), {target: {value: password}})
-  fireEvent.click(getByText(/submit/i))
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+  userEvent.click(screen.getByText(/submit/i))
 
-  expect(getByLabelText(/loading/i)).toBeInTheDocument()
+  await screen.findByLabelText(/loading/i)
+
   expect(window.fetch.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "/api/login",
-    Object {
-      "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
-      "headers": Object {
-        "content-type": "application/json",
-      },
-      "method": "POST",
-    },
-  ],
-]
-`)
-  // 🐨 use React Testing Library's `wait` utility (💰 import it at the top of the file)
-  // here to wait until `navigate` has been called once.
-  // 💰 make sure this test function supports `await` by making this test function `async`
-  // 💰 await wait(() => expect........)
-  //
-  // 🐨 assert that navigate was called with the right arguments
-  // 🐨 assert that localStorage's "token" item is "fake-token"
-})
+    Array [
+      Array [
+        "/api/login",
+        Object {
+          "body": "{\\"username\\":\\"chucknorris\\",\\"password\\":\\"i need no password\\"}",
+          "headers": Object {
+            "content-type": "application/json",
+          },
+          "method": "POST",
+        },
+      ],
+    ]
+  `)
 
-// 💯 Read up on and try to use jest's __mocks__ directory functionality
-// Note: there's no final example of this because if there were it would mess
-// up your exercise 😅 Make sure to ask me about this!
-// 📜 https://jestjs.io/docs/en/manual-mocks
+  // 🐨 use React Testing Library's `waitFor` utility (💰 import it at the top of the file)
+  // here to wait until `mockNavigate` has been called once.
+  // 📜 https://testing-library.com/docs/dom-testing-library/api-async#waitfor
+  //
+  // 🐨 assert that `mockNavigate` was called with the right arguments
+  // 🐨 assert that localStorage's "token" item is "fake-token"
+  // 💰 window.localStorage.getItem('token')
+})
