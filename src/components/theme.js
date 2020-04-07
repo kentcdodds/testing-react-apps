@@ -11,8 +11,8 @@ function useTheme() {
   return context
 }
 
-function ThemeProvider(props) {
-  const [theme, setTheme] = React.useState('light')
+function ThemeProvider({initialTheme = 'light', ...props}) {
+  const [theme, setTheme] = React.useState(initialTheme)
   return <ThemeContext.Provider value={[theme, setTheme]} {...props} />
 }
 

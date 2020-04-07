@@ -4,7 +4,7 @@ import {ThemeProvider} from 'components/theme'
 
 function render(ui, {theme = 'light', ...options}) {
   const Wrapper = ({children}) => (
-    <ThemeProvider value={[theme, () => {}]}>{children}</ThemeProvider>
+    <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
   )
   return rtlRender(ui, {wrapper: Wrapper, ...options})
 }

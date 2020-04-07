@@ -5,31 +5,14 @@ import {render, screen} from '@testing-library/react'
 import {ThemeProvider} from '../../components/theme'
 import EasyButton from '../../components/easy-button'
 
-function renderWithTheme(ui, {theme = 'light', ...options}) {
-  const Wrapper = ({children}) => (
-    <ThemeProvider value={[theme, () => {}]}>{children}</ThemeProvider>
-  )
-  return render(ui, {wrapper: Wrapper, ...options})
-}
-
 test('renders with the light styles for the light theme', () => {
-  renderWithTheme(<EasyButton>Easy</EasyButton>, {
-    theme: 'light',
-  })
+  const Wrapper = ({children}) => (
+    <ThemeProvider initialTheme="light">{children}</ThemeProvider>
+  )
+  render(<EasyButton>Easy</EasyButton>, {wrapper: Wrapper})
   const button = screen.getByText(/easy/i)
   expect(button).toHaveStyle(`
     background-color: white;
     color: black;
-  `)
-})
-
-test('renders with the dark styles for the dark theme', () => {
-  renderWithTheme(<EasyButton>Easy</EasyButton>, {
-    theme: 'dark',
-  })
-  const button = screen.getByText(/easy/i)
-  expect(button).toHaveStyle(`
-    background-color: black;
-    color: white;
   `)
 })
