@@ -76,8 +76,8 @@ After you've made sure to have the correct things (and versions) installed, you
 should be able to just run a few commands to get set up:
 
 ```
-git clone https://github.com/kentcdodds/testing-react-app.git
-cd bookshelf
+git clone https://github.com/kentcdodds/testing-react-apps.git
+cd testing-react-apps
 npm run setup --silent
 ```
 
@@ -98,7 +98,7 @@ This should start up your browser. If you're familiar, this is a standard
 [react-scripts](https://create-react-app.dev/) application.
 
 You can also open
-[the deployment of the app on Netlify](https://testing-react-app.netlify.app/).
+[the deployment of the app on Netlify](https://testing-react-apps.netlify.app/).
 
 There's not much to it. The whole reason we have the app is just so you can see
 examples of the components that we'll be testing.
@@ -216,7 +216,7 @@ Thanks goes to these wonderful people
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://kentcdodds.com"><img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;" alt=""/><br /><sub><b>Kent C. Dodds</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-app/commits?author=kentcdodds" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-app/commits?author=kentcdodds" title="Documentation">📖</a> <a href="#infra-kentcdodds" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kentcdodds/testing-react-app/commits?author=kentcdodds" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://kentcdodds.com"><img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;" alt=""/><br /><sub><b>Kent C. Dodds</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=kentcdodds" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=kentcdodds" title="Documentation">📖</a> <a href="#infra-kentcdodds" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=kentcdodds" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
@@ -240,19 +240,19 @@ at me@kentcdodds.com
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/travis/com/kentcdodds/testing-react-app.svg?style=flat-square&logo=travis
-[build]: https://travis-ci.com/kentcdodds/testing-react-app
+[build-badge]: https://img.shields.io/travis/com/kentcdodds/testing-react-apps.svg?style=flat-square&logo=travis
+[build]: https://travis-ci.com/kentcdodds/testing-react-apps
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-[license]: https://github.com/kentcdodds/testing-react-app/blob/master/README.md#license
+[license]: https://github.com/kentcdodds/testing-react-apps/blob/master/README.md#license
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-[coc]: https://github.com/kentcdodds/testing-react-app/blob/master/CODE_OF_CONDUCT.md
+[coc]: https://github.com/kentcdodds/testing-react-apps/blob/master/CODE_OF_CONDUCT.md
 [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
 [all-contributors]: https://github.com/kentcdodds/all-contributors
 [win-path]: https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 [mac-path]: http://stackoverflow.com/a/24322978/971592
-[issue]: https://github.com/kentcdodds/testing-react-app/issues/new
-[win-build-badge]: https://img.shields.io/appveyor/ci/kentcdodds/testing-react-app.svg?style=flat-square&logo=appveyor
-[win-build]: https://ci.appveyor.com/project/kentcdodds/testing-react-app
+[issue]: https://github.com/kentcdodds/testing-react-apps/issues/new
+[win-build-badge]: https://img.shields.io/appveyor/ci/kentcdodds/testing-react-apps.svg?style=flat-square&logo=appveyor
+[win-build]: https://ci.appveyor.com/project/kentcdodds/testing-react-apps
 <!-- prettier-ignore-end -->
