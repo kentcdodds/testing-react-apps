@@ -15,7 +15,7 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // so you only need to pass one argument. render returns an object with a
   // bunch of utilities on it. For now, let's just grab `container` which is
   // the div that React Testing Library creates for us.
-  // 💰 const {container} = render(<Couter />)
+  // 💰 const {container} = render(<Counter />)
   ReactDOM.render(<Counter />, div)
 
   // 🐨 instead of `div` here you'll want to use the `container` you get back
