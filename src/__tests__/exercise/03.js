@@ -5,7 +5,7 @@ import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 
-test('counter increments when the button is clicked', () => {
+test('counter increments and decrements when the buttons are clicked', () => {
   const {container} = render(<Counter />)
   // 🐨 replace these with screen queries
   // 💰 you can use `getByText` for each of these (`getByRole` can work for the button too)

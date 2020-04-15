@@ -4,7 +4,7 @@ import React from 'react'
 import {render, screen, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 
-test('counter increments when the button is clicked', () => {
+test('counter increments and decrements when the buttons are clicked', () => {
   render(<Counter />)
   const increment = screen.getByText(/increment/i)
   const decrement = screen.getByText(/decrement/i)

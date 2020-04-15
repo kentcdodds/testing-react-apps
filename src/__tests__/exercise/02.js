@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 // 🐨 import the `render` and `fireEvent` utilities from '@testing-library/react'
 import Counter from '../../components/counter'
 
-test('counter increments when the button is clicked', () => {
+test('counter increments and decrements when the buttons are clicked', () => {
   // 💣 remove these two lines, React Testing Library will create the div for you
   const div = document.createElement('div')
   document.body.appendChild(div)
