@@ -22,8 +22,6 @@ and React Testing Library to test your react components.
 
 ## Pre-Workshop Instructions/Requirements
 
-**NOTE: This repository is used for a two-part workshop**
-
 In order for us to maximize our efforts during the workshop, please complete the
 following things to prepare.
 
