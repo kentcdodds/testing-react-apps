@@ -5,7 +5,7 @@
   "imageSize": 100,
   "commit": false,
   "contributorsPerLine": 7,
-  "projectName": "testing-react-app",
+  "projectName": "testing-react-apps",
   "projectOwner": "kentcdodds",
   "repoType": "github",
   "repoHost": "https://github.com",
@@ -20,6 +20,15 @@
         "code",
         "doc",
         "infra",
+        "test"
+      ]
+    },
+    {
+      "login": "gautam-pahuja",
+      "name": "Gautam Pahuja",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/32642691?v=4",
+      "profile": "https://relayr.io/",
+      "contributions": [
         "test"
       ]
     }
