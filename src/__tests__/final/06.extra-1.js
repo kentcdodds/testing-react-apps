@@ -56,3 +56,34 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   expect(mockNavigate).toHaveBeenCalledWith('/app')
   expect(window.localStorage.getItem('token')).toBe(fakeToken)
 })
+
+test('an error is displayed in the event of a failure', async () => {
+  const mockNavigate = jest.fn()
+  useNavigate.mockImplementation(() => mockNavigate)
+
+  const errorMessage = 'Oh no!'
+  window.fetch.mockResolvedValueOnce({
+    ok: false,
+    json: () => Promise.resolve({errors: [errorMessage]}),
+  })
+
+  render(<Login />)
+  const {username, password} = buildLoginForm()
+
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+  userEvent.click(screen.getByText(/submit/i))
+
+  await screen.findByLabelText(/loading/i)
+
+  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
+    method: 'POST',
+    body: JSON.stringify({username, password}),
+    headers: {'content-type': 'application/json'},
+  })
+
+  expect(await screen.findByRole('alert')).toHaveTextContent(errorMessage)
+
+  expect(mockNavigate).not.toHaveBeenCalled()
+  expect(window.localStorage.getItem('token')).toBeFalsy()
+})

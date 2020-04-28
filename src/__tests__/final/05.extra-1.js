@@ -7,10 +7,12 @@ import userEvent from '@testing-library/user-event'
 import Login from '../../components/login-submission'
 
 test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const fakeResponse = Promise.resolve({token: 'fake-token'})
+  const fakeToken = 'fake-token'
   window.fetch.mockResolvedValueOnce({
-    json: () => fakeResponse,
+    ok: true,
+    json: () => Promise.resolve({token: fakeToken}),
   })
+
   render(<Login />)
   const username = 'chucknorris'
   const password = 'i need no password'

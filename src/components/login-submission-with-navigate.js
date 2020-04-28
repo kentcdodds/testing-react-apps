@@ -17,19 +17,19 @@ import Login from './login'
 
 function formSubmissionReducer(state, action) {
   switch (action.type) {
-    case 'SUBMIT': {
-      return {loading: true, responseData: null, errorMessage: null}
+    case 'START': {
+      return {status: 'pending', responseData: null, errorMessage: null}
     }
-    case 'SUCCESS': {
+    case 'RESOLVE': {
       return {
-        loading: false,
+        status: 'resolved',
         responseData: action.responseData,
         errorMessage: null,
       }
     }
-    case 'ERROR': {
+    case 'REJECT': {
       return {
-        loading: false,
+        status: 'rejected',
         responseData: null,
         errorMessage: action.error.errors[0],
       }
@@ -41,7 +41,7 @@ function formSubmissionReducer(state, action) {
 
 function useFormSubmission({endpoint, data}) {
   const [state, dispatch] = React.useReducer(formSubmissionReducer, {
-    loading: false,
+    status: 'idle',
     responseData: null,
     errorMessage: null,
   })
@@ -50,7 +50,7 @@ function useFormSubmission({endpoint, data}) {
 
   React.useEffect(() => {
     if (fetchBody) {
-      dispatch({type: 'SUBMIT'})
+      dispatch({type: 'START'})
       window
         .fetch(endpoint, {
           method: 'POST',
@@ -59,15 +59,14 @@ function useFormSubmission({endpoint, data}) {
             'content-type': 'application/json',
           },
         })
-        .then(r => r.json())
-        .then(
-          responseData => {
-            dispatch({type: 'SUCCESS', responseData})
-          },
-          error => {
-            dispatch({type: 'ERROR', error})
-          },
-        )
+        .then(async response => {
+          const data = await response.json()
+          if (response.ok) {
+            dispatch({type: 'RESOLVE', responseData: data})
+          } else {
+            dispatch({type: 'REJECT', error: data})
+          }
+        })
     }
   }, [fetchBody, endpoint])
 
@@ -86,12 +85,12 @@ function Spinner() {
 function LoginSubmission() {
   const navigate = useNavigate()
   const [formData, setFormData] = React.useState(null)
-  const {loading, responseData, errorMessage} = useFormSubmission({
+  const {status, responseData, errorMessage} = useFormSubmission({
     endpoint: '/api/login',
     data: formData,
   })
 
-  const token = responseData && responseData.token
+  const token = responseData?.token
   React.useEffect(() => {
     if (token) {
       window.localStorage.setItem('token', token)
@@ -99,15 +98,15 @@ function LoginSubmission() {
     }
   }, [navigate, token])
 
-  if (responseData) {
-    return null
-  }
-
   return (
     <>
       <Login onSubmit={data => setFormData(data)} />
-      {loading ? <Spinner /> : null}
-      {errorMessage}
+      {status === 'pending' ? <Spinner /> : null}
+      {errorMessage ? (
+        <div role="alert" style={{color: 'red'}}>
+          {errorMessage}
+        </div>
+      ) : null}
     </>
   )
 }

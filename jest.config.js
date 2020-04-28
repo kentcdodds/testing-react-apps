@@ -6,7 +6,7 @@ module.exports = {
     '@testing-library/jest-dom/extend-expect',
     path.join(__dirname, 'src/test/setup'),
   ],
-  clearMocks: true,
+  resetMocks: true,
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   watchPlugins: [
     'jest-watch-typeahead/filename',

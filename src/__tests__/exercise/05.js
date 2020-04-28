@@ -3,7 +3,18 @@
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import {build, fake} from '@jackfranklin/test-data-bot'
 import Login from '../../components/login-submission'
+
+const buildLoginForm = build('Login Form', {
+  fields: {
+    username: fake(f => f.internet.userName()),
+    password: fake(f => f.internet.password()),
+  },
+})
+
+// 💰 I've already mocked fetch globally for this testbase! Check it out in ./test/setup.js
+// because of this you can assume that `window.fetch` is a mock function.
 
 test('submitting the form calls onSubmit with username and password', async () => {
   // here we want to tell jest that the next time window.fetch is called, it
@@ -13,8 +24,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockresolvedvalueoncevalue
 
   render(<Login />)
-  const username = 'chucknorris'
-  const password = 'i need no password'
+  const {username, password} = buildLoginForm()
 
   userEvent.type(screen.getByLabelText(/username/i), username)
   userEvent.type(screen.getByLabelText(/password/i), password)

@@ -3,16 +3,25 @@
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import {build, fake} from '@jackfranklin/test-data-bot'
 import Login from '../../components/login-submission'
 
+const buildLoginForm = build('Login Form', {
+  fields: {
+    username: fake(f => f.internet.userName()),
+    password: fake(f => f.internet.password()),
+  },
+})
+
 test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const fakeResponse = Promise.resolve({token: 'fake-token'})
+  const fakeToken = 'fake-token'
   window.fetch.mockResolvedValueOnce({
-    json: () => fakeResponse,
+    ok: true,
+    json: () => Promise.resolve({token: fakeToken}),
   })
+
   render(<Login />)
-  const username = 'chucknorris'
-  const password = 'i need no password'
+  const {username, password} = buildLoginForm()
 
   await userEvent.type(screen.getByLabelText(/username/i), username)
   await userEvent.type(screen.getByLabelText(/password/i), password)

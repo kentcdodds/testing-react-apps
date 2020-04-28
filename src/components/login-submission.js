@@ -59,15 +59,14 @@ function useFormSubmission({endpoint, data}) {
             'content-type': 'application/json',
           },
         })
-        .then(r => r.json())
-        .then(
-          responseData => {
-            dispatch({type: 'RESOLVE', responseData})
-          },
-          error => {
-            dispatch({type: 'REJECT', error})
-          },
-        )
+        .then(async response => {
+          const data = await response.json()
+          if (response.ok) {
+            dispatch({type: 'RESOLVE', responseData: data})
+          } else {
+            dispatch({type: 'REJECT', error: data})
+          }
+        })
     }
   }, [fetchBody, endpoint])
 
@@ -94,19 +93,19 @@ function LoginSubmission() {
   React.useEffect(() => {
     if (token) {
       window.localStorage.setItem('token', token)
+      // TODO: navigate away on submission success
     }
   }, [token])
-
-  if (status === 'resolved') {
-    // TODO: navigate away on submission success
-    return null
-  }
 
   return (
     <>
       <Login onSubmit={data => setFormData(data)} />
       {status === 'pending' ? <Spinner /> : null}
-      {errorMessage}
+      {errorMessage ? (
+        <div role="alert" style={{color: 'red'}}>
+          {errorMessage}
+        </div>
+      ) : null}
     </>
   )
 }
