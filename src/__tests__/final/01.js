@@ -5,6 +5,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Counter from '../../components/counter'
 
+beforeEach(() => {
+  document.body.innerHTML = ''
+})
+
 test('counter increments and decrements when the buttons are clicked', () => {
   const div = document.createElement('div')
   document.body.append(div)
@@ -18,6 +22,4 @@ test('counter increments and decrements when the buttons are clicked', () => {
   expect(message.textContent).toBe('Current count: 1')
   decrement.click()
   expect(message.textContent).toBe('Current count: 0')
-
-  div.remove()
 })
