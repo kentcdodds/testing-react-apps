@@ -30,7 +30,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   userEvent.type(screen.getByLabelText(/username/i), username)
   userEvent.type(screen.getByLabelText(/password/i), password)
   // 🐨 uncomment this and you'll start seeing errors
-  // userEvent.click(screen.getByText(/submit/i))
+  // userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   // as soon as the user hits submit, we render a spinner to the screen. That
   // spinner has an aria-label of "loading..." for accessibility purposes, so

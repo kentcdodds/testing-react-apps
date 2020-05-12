@@ -13,7 +13,7 @@ test('allows you to undo and redo', () => {
   const past = screen.getByText(/past/i)
   const future = screen.getByText(/future/i)
   const input = screen.getByLabelText(/new value/i)
-  const submit = screen.getByText(/submit/i)
+  const submit = screen.getByRole('button', {name: /submit/i})
   const undo = screen.getByText(/undo/i)
   const redo = screen.getByText(/redo/i)
 

@@ -23,11 +23,11 @@ test('submitting the form calls onSubmit with username and password', async () =
 
   await userEvent.type(screen.getByLabelText(/username/i), username)
   await userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByText(/submit/i))
+  userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(handleSubmit).toHaveBeenCalledTimes(1)
   expect(handleSubmit).toHaveBeenCalledWith({
     username,
     password,
   })
+  expect(handleSubmit).toHaveBeenCalledTimes(1)
 })
