@@ -3,7 +3,7 @@ import './styles.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ErrorBoundary from 'react-error-boundary'
+import {ErrorBoundary} from 'react-error-boundary'
 import importAll from 'import-all.macro'
 
 const allDynamicImports = importAll.deferred('./examples/*.js')
