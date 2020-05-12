@@ -43,5 +43,5 @@ test('counter increments and decrements when the buttons are clicked', () => {
   expect(message.textContent).toBe('Current count: 0')
 
   // 💣 remove this. React Testing Library does this automatically!
-  document.body.remove(div)
+  div.remove()
 })

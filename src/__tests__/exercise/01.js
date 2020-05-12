@@ -22,7 +22,7 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // 🐨 click the decrement button (💰 decrement.click())
   // 🐨 assert the message.textContent
   //
-  // 🐨 cleanup by removing the div from the page (💰 document.body.remove(div))
+  // 🐨 cleanup by removing the div from the page (💰 div.remove())
   // 🦉 If you don't cleanup, then it could impact other tests and/or cause a memory leak
 })
 
