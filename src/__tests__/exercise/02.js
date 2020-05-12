@@ -6,6 +6,11 @@ import ReactDOM from 'react-dom'
 // 🐨 import the `render` and `fireEvent` utilities from '@testing-library/react'
 import Counter from '../../components/counter'
 
+// 💣 remove this. React Testing Library does this automatically!
+beforeEach(() => {
+  document.body.innerHTML = ''
+})
+
 test('counter increments and decrements when the buttons are clicked', () => {
   // 💣 remove these two lines, React Testing Library will create the div for you
   const div = document.createElement('div')
@@ -41,7 +46,4 @@ test('counter increments and decrements when the buttons are clicked', () => {
   })
   decrement.dispatchEvent(decrementClickEvent)
   expect(message.textContent).toBe('Current count: 0')
-
-  // 💣 remove this. React Testing Library does this automatically!
-  div.remove()
 })
