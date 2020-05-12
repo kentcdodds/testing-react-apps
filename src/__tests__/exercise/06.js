@@ -15,7 +15,7 @@ import {build, fake} from '@jackfranklin/test-data-bot'
 import Login from '../../components/login-submission'
 // import Login from '../../components/login-submission-with-navigate'
 
-const buildLoginForm = build('Login Form', {
+const buildLoginForm = build({
   fields: {
     username: fake(f => f.internet.userName()),
     password: fake(f => f.internet.password()),
