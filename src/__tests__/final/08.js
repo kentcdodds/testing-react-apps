@@ -19,8 +19,8 @@ function UseCounterHookExample() {
 
 test('exposes the count and increment/decrement functions', () => {
   render(<UseCounterHookExample />)
-  const increment = screen.getByText(/increment/i)
-  const decrement = screen.getByText(/decrement/i)
+  const increment = screen.getByRole('button', {name: /increment/i})
+  const decrement = screen.getByRole('button', {name: /decrement/i})
   const message = screen.getByText(/current count/i)
 
   expect(message).toHaveTextContent('Current count: 0')
