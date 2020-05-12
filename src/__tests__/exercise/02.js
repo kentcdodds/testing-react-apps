@@ -9,7 +9,7 @@ import Counter from '../../components/counter'
 test('counter increments and decrements when the buttons are clicked', () => {
   // 💣 remove these two lines, React Testing Library will create the div for you
   const div = document.createElement('div')
-  document.body.appendChild(div)
+  document.body.append(div)
 
   // 🐨 swap ReactDOM.render with React Testing Library's render
   // Note that React Testing Library's render doesn't need you to pass a `div`

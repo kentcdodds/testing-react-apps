@@ -7,7 +7,7 @@ import Counter from '../../components/counter'
 
 test('counter increments and decrements when the buttons are clicked', () => {
   const div = document.createElement('div')
-  document.body.appendChild(div)
+  document.body.append(div)
 
   ReactDOM.render(<Counter />, div)
   const [decrement, increment] = div.querySelectorAll('button')

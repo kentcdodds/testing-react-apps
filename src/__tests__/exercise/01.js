@@ -8,7 +8,7 @@ import Counter from '../../components/counter'
 test('counter increments and decrements when the buttons are clicked', () => {
   // 🐨 create a div to render your component to (💰 document.createElement)
   //
-  // 🐨 append the div to document.body (💰 document.body.appendChild)
+  // 🐨 append the div to document.body (💰 document.body.append)
   //
   // 🐨 use ReactDOM.render to render the <Counter /> to the div
   // 🐨 get a reference to the increment and decrement buttons:
