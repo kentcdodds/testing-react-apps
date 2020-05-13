@@ -1,5 +1,4 @@
 // mocking modules
-// 💯 test the unhappy path
 // http://localhost:3000/login-submission
 
 import React from 'react'
