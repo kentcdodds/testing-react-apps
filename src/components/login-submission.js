@@ -101,7 +101,7 @@ function LoginSubmission() {
     <>
       <Login onSubmit={data => setFormData(data)} />
       {status === 'pending' ? <Spinner /> : null}
-      {errorMessage ? (
+      {status === 'rejected' ? (
         <div role="alert" style={{color: 'red'}}>
           {errorMessage}
         </div>

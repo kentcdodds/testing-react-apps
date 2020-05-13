@@ -15,12 +15,14 @@ const fakeResponses = [
       if (body.password === 'fail') {
         return {
           status: 400,
+          ok: false,
           json: () =>
-            Promise.reject({errors: ['Incorrect username or password']}),
+            Promise.resolve({errors: ['Incorrect username or password']}),
         }
       } else {
         return {
           status: 200,
+          ok: true,
           json: () => Promise.resolve({token: btoa(body.username)}),
         }
       }
