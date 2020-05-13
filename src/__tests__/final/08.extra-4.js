@@ -12,10 +12,10 @@ test('allows you to undo and redo', () => {
   const present = screen.getByText(/present/i)
   const past = screen.getByText(/past/i)
   const future = screen.getByText(/future/i)
-  const input = screen.getByLabelText(/new value/i)
+  const input = screen.getByRole('textbox', {name: /new value/i})
   const submit = screen.getByRole('button', {name: /submit/i})
-  const undo = screen.getByText(/undo/i)
-  const redo = screen.getByText(/redo/i)
+  const undo = screen.getByRole('button', {name: /undo/i})
+  const redo = screen.getByRole('button', {name: /redo/i})
 
   // assert initial state
   expect(undo).toBeDisabled()
