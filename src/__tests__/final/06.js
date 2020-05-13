@@ -3,7 +3,7 @@
 // http://localhost:3000/login-submission
 
 import React from 'react'
-import {render, screen, waitFor} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {useNavigate} from 'react-router-dom'
 import {build, fake} from '@jackfranklin/test-data-bot'
@@ -53,7 +53,7 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
     headers: {'content-type': 'application/json'},
   })
 
-  await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(1))
   expect(mockNavigate).toHaveBeenCalledWith('/app')
+  expect(mockNavigate).toHaveBeenCalledTimes(1)
   expect(window.localStorage.getItem('token')).toBe(fakeToken)
 })

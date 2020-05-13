@@ -2,7 +2,6 @@
 // http://localhost:3000/login-submission
 
 import React from 'react'
-// 🐨 also import "waitFor" from "@testing-library/react"
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
@@ -76,11 +75,9 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
     headers: {'content-type': 'application/json'},
   })
 
-  // 🐨 use React Testing Library's `waitFor` utility (💰 import it at the top of the file)
-  // here to wait until `mockNavigate` has been called once.
-  // 📜 https://testing-library.com/docs/dom-testing-library/api-async#waitfor
-  //
   // 🐨 assert that `mockNavigate` was called with the right arguments
+  // 🐨 assert that `mockNavigate` has been called once.
+  //
   // 🐨 assert that localStorage's "token" item is "fake-token"
   // 💰 window.localStorage.getItem('token')
 })
