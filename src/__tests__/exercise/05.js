@@ -21,7 +21,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   // here we want to tell jest that the next time window.fetch is called, it
   // should return a promise that resolves to a value we specify:
   // 🐨 using `mockResolvedValueOnce`, have window.fetch return this next time
-  // it's called: `{json: () => Promise.resolve({token: 'fake-token'})}`
+  // it's called: `{ok: true, json: () => Promise.resolve({token: 'fake-token'})}`
   // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockresolvedvalueoncevalue
 
   render(<Login />)
@@ -33,7 +33,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   // userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   // as soon as the user hits submit, we render a spinner to the screen. That
-  // spinner has an aria-label of "loading..." for accessibility purposes, so
+  // spinner has an aria-label of "loading" for accessibility purposes, so
   // 🐨 assert that there is an element labeled "loading" in the document
   // 💰 you'll need to use a `find*` query variant like findByLabelText (so you'll want to use `await`)
   // 📜 https://testing-library.com/docs/dom-testing-library/api-queries#findby
