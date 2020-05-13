@@ -11,7 +11,7 @@ test('renders with the light styles for the light theme', () => {
     <ThemeProvider initialTheme="light">{children}</ThemeProvider>
   )
   render(<EasyButton>Easy</EasyButton>, {wrapper: Wrapper})
-  const button = screen.getByText(/easy/i)
+  const button = screen.getByRole('button', {name: /easy/i})
   expect(button).toHaveStyle(`
     background-color: white;
     color: black;
