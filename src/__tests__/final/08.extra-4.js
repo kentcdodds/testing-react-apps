@@ -3,10 +3,11 @@
 // http://localhost:3000/undo
 
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import UseUndoExample from '../../examples/undo'
 
-test('allows you to undo and redo', () => {
+test('allows you to undo and redo', async () => {
   render(<UseUndoExample />)
 
   const present = screen.getByText(/present/i)
@@ -25,8 +26,8 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future:`)
 
   // add second value
-  input.value = 'two'
-  fireEvent.click(submit)
+  await userEvent.type(input, 'two')
+  userEvent.click(submit)
   // assert new state
   expect(undo).not.toBeDisabled()
   expect(redo).toBeDisabled()
@@ -35,8 +36,8 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future:`)
 
   // add third value
-  input.value = 'three'
-  fireEvent.click(submit)
+  await userEvent.type(input, 'three')
+  userEvent.click(submit)
   // assert new state
   expect(undo).not.toBeDisabled()
   expect(redo).toBeDisabled()
@@ -45,7 +46,7 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future:`)
 
   // undo
-  fireEvent.click(undo)
+  userEvent.click(undo)
   // assert "undone" state
   expect(undo).not.toBeDisabled()
   expect(redo).not.toBeDisabled()
@@ -54,8 +55,8 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future: three`)
 
   // undo again
-  fireEvent.click(undo)
-  // assert "double-undone" state
+  userEvent.click(undo)
+  // assert "undone" state
   expect(undo).toBeDisabled()
   expect(redo).not.toBeDisabled()
   expect(past).toHaveTextContent(`Past:`)
@@ -63,7 +64,7 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future: two, three`)
 
   // redo
-  fireEvent.click(redo)
+  userEvent.click(redo)
   // assert undo + undo + redo state
   expect(undo).not.toBeDisabled()
   expect(redo).not.toBeDisabled()
@@ -72,9 +73,9 @@ test('allows you to undo and redo', () => {
   expect(future).toHaveTextContent(`Future: three`)
 
   // add fourth value
-  input.value = 'four'
-  fireEvent.click(submit)
-  // assert final state (note the lack of "third")
+  await userEvent.type(input, 'four')
+  userEvent.click(submit)
+  // assert final state (note the lack of "three")
   expect(undo).not.toBeDisabled()
   expect(redo).toBeDisabled()
   expect(past).toHaveTextContent(`Past: one, two`)
