@@ -1,6 +1,6 @@
 // testing with context and a custom render method
 // 💯 swap @testing-library/react with app test utils
-// http://localhost:3000/easy-button-example
+// http://localhost:3000/easy-button
 
 import React from 'react'
 import {render, screen} from 'test/test-utils'

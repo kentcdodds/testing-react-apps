@@ -1,4 +1,4 @@
-// http://localhost:3000/easy-button-example
+// http://localhost:3000/easy-button
 
 import React from 'react'
 import EasyButton from '../components/easy-button'
