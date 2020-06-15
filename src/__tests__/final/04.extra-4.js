@@ -20,8 +20,8 @@ test('submitting the form calls onSubmit with username and password', async () =
   render(<Login onSubmit={handleSubmit} />)
   const {username, password} = buildLoginForm()
 
-  await userEvent.type(screen.getByLabelText(/username/i), username)
-  await userEvent.type(screen.getByLabelText(/password/i), password)
+  userEvent.type(screen.getByLabelText(/username/i), username)
+  userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   expect(handleSubmit).toHaveBeenCalledWith({

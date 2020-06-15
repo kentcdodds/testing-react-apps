@@ -26,7 +26,7 @@ test('allows you to undo and redo', async () => {
   expect(future).toHaveTextContent(`Future:`)
 
   // add second value
-  await userEvent.type(input, 'two')
+  userEvent.type(input, 'two')
   userEvent.click(submit)
   // assert new state
   expect(undo).not.toBeDisabled()
@@ -36,7 +36,7 @@ test('allows you to undo and redo', async () => {
   expect(future).toHaveTextContent(`Future:`)
 
   // add third value
-  await userEvent.type(input, 'three')
+  userEvent.type(input, 'three')
   userEvent.click(submit)
   // assert new state
   expect(undo).not.toBeDisabled()
@@ -73,7 +73,7 @@ test('allows you to undo and redo', async () => {
   expect(future).toHaveTextContent(`Future: three`)
 
   // add fourth value
-  await userEvent.type(input, 'four')
+  userEvent.type(input, 'four')
   userEvent.click(submit)
   // assert final state (note the lack of "three")
   expect(undo).not.toBeDisabled()
