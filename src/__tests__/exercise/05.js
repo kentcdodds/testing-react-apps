@@ -2,6 +2,7 @@
 // http://localhost:3000/login-submission
 
 import React from 'react'
+// 🐨 you'll need to grab waitForElementToBeRemoved from '@testing-library/react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
@@ -38,11 +39,12 @@ test(`logging in displays the user's username`, async () => {
 
   // as soon as the user hits submit, we render a spinner to the screen. That
   // spinner has an aria-label of "loading" for accessibility purposes, so
-  // 🐨 assert that there is an element labeled "loading" in the document
-  // 💰 you'll need to use a `find*` query variant like findByLabelText (so you'll want to use `await`)
-  // 📜 https://testing-library.com/docs/dom-testing-library/api-queries#findby
+  // 🐨 wait for the loading spinner to be removed using waitForElementToBeRemoved
+  // 📜 https://testing-library.com/docs/dom-testing-library/api-async#waitforelementtoberemoved
 
   // once the login is successful, then the loading spinner disappears and
   // we render the username.
   // 🐨 use a `find*` query to wait for the username to appear
+  // 💰 you'll need to use a `find*` query variant like findByLabelText (so you'll want to use `await`)
+  // 📜 https://testing-library.com/docs/dom-testing-library/api-queries#findby
 })
