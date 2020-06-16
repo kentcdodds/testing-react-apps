@@ -15,7 +15,7 @@ const buildLoginForm = build({
   },
 })
 
-test('submitting the form calls onSubmit with username and password', async () => {
+test('submitting the form calls onSubmit with username and password', () => {
   const handleSubmit = jest.fn()
   render(<Login onSubmit={handleSubmit} />)
   const {username, password} = buildLoginForm()

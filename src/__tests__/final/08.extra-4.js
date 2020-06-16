@@ -7,7 +7,7 @@ import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import UseUndoExample from '../../examples/undo'
 
-test('allows you to undo and redo', async () => {
+test('allows you to undo and redo', () => {
   render(<UseUndoExample />)
 
   const present = screen.getByText(/present/i)
