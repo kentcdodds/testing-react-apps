@@ -77,18 +77,21 @@ function LoginSubmission() {
 
   return (
     <>
-      <Login onSubmit={data => setFormData(data)} />
       {status === 'resolved' ? (
         <div>
           Welcome <strong>{responseData.username}</strong>
         </div>
-      ) : null}
-      {status === 'pending' ? <Spinner /> : null}
-      {status === 'rejected' ? (
-        <div role="alert" style={{color: 'red'}}>
-          {errorMessage}
-        </div>
-      ) : null}
+      ) : (
+        <Login onSubmit={data => setFormData(data)} />
+      )}
+      <div style={{height: 200}}>
+        {status === 'pending' ? <Spinner /> : null}
+        {status === 'rejected' ? (
+          <div role="alert" style={{color: 'red'}}>
+            {errorMessage}
+          </div>
+        ) : null}
+      </div>
     </>
   )
 }
