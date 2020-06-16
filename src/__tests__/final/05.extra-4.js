@@ -24,7 +24,7 @@ beforeAll(() => server.listen())
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
 
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
+test(`logging in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
@@ -32,8 +32,10 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  await screen.findByLabelText(/loading/i)
-  await screen.findByText(username)
+  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+
+  expect(await screen.findByText(username)).toBeInTheDocument()
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 })
 
 test('omitting the password results in an error', async () => {
@@ -44,11 +46,12 @@ test('omitting the password results in an error', async () => {
   // don't type in the password
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  await screen.findByLabelText(/loading/i)
+  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
 
   expect((await screen.findByRole('alert')).textContent).toMatchInlineSnapshot(
     `"password required"`,
   )
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 })
 
 test('unknown server error displays the error message', async () => {
@@ -64,7 +67,8 @@ test('unknown server error displays the error message', async () => {
   render(<Login />)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  await screen.findByLabelText(/loading/i)
+  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
 
   expect(await screen.findByRole('alert')).toHaveTextContent(testErrorMessage)
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 })

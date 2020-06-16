@@ -5,6 +5,7 @@ import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
+// 🐨 you'll need to import rest from 'msw' and setupServer from msw/node
 import Login from '../../components/login-submission'
 
 const buildLoginForm = build({
@@ -14,22 +15,25 @@ const buildLoginForm = build({
   },
 })
 
-// 💰 I've already mocked fetch globally for this testbase! Check it out in ./test/setup.js
-// because of this you can assume that `window.fetch` is a mock function.
+// 🐨 get the server setup with an async function to handle the login POST request:
+// 💰 here's something to get you started
+// rest.post(
+//   'https://auth-provider.example.com/api/login',
+//   async (req, res, ctx) => {},
+// )
+// you'll want to respond with an JSON object that has the username.
+// 📜 https://mswjs.io/
 
-test('submitting the form calls onSubmit with username and password', async () => {
-  // here we want to tell jest that the next time window.fetch is called, it
-  // should return a promise that resolves to a value we specify:
-  // 🐨 using `mockResolvedValueOnce`, have window.fetch return this next time
-  // it's called: `{ok: true, json: () => Promise.resolve({token: 'fake-token'})}`
-  // 📜 https://jestjs.io/docs/en/mock-function-api#mockfnmockresolvedvalueoncevalue
+// 🐨 before all the tests, start the server with `server.listen()`
+// 🐨 after all the tests, stop the server with `server.close()`
 
+test(`logging in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
   userEvent.type(screen.getByLabelText(/username/i), username)
   userEvent.type(screen.getByLabelText(/password/i), password)
-  // 🐨 uncomment this and you'll start seeing errors
+  // 🐨 uncomment this and you'll start making the request!
   // userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   // as soon as the user hits submit, we render a spinner to the screen. That
@@ -38,9 +42,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   // 💰 you'll need to use a `find*` query variant like findByLabelText (so you'll want to use `await`)
   // 📜 https://testing-library.com/docs/dom-testing-library/api-queries#findby
 
-  // 🐨 assert that window.fetch was called appropriately.
-  // 💰 There are various ways to do this, here are a few methods that might be
-  // helpful for you with you use `expect(window.fetch)`:
-  // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledwitharg1-arg2-
-  // 📜 https://jestjs.io/docs/en/expect#tohavebeencalledtimesnumber
+  // once the login is successful, then the loading spinner disappears and
+  // we render the username.
+  // 🐨 use a `find*` query to wait for the username to appear
 })

@@ -22,7 +22,7 @@ const server = setupServer(...handlers)
 beforeAll(() => server.listen())
 afterAll(() => server.close())
 
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
+test(`logging in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
@@ -30,6 +30,8 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  await screen.findByLabelText(/loading/i)
-  await screen.findByText(username)
+  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+
+  expect(await screen.findByText(username)).toBeInTheDocument()
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 })
