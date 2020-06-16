@@ -1,83 +1,71 @@
-// mocking modules
-// http://localhost:3000/login-submission
+// mocking Browser APIs and modules
+// http://localhost:3000/location
 
 import React from 'react'
-import {render, screen} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import {build, fake} from '@jackfranklin/test-data-bot'
-// 🐨 import the useNavigate hook from the react-router-dom module
-// 💰 because you're going to use jest.mock below, the `useNavigate`, you pull
-// in here will actually be whatever you return from your mock factory
-// function below.
+import {render, screen, act} from '@testing-library/react'
+import Location from '../../examples/location'
 
-// 🐨 swap these imports so you get the new navigate feature
-import Login from '../../components/login-submission'
-// import Login from '../../components/login-submission-with-navigate'
+// 🐨 set window.navigator.geolocation to an object that has a getCurrentPosition mock function
 
-const buildLoginForm = build({
-  fields: {
-    username: fake(f => f.internet.userName()),
-    password: fake(f => f.internet.password()),
-  },
-})
-
-// 🐨 use jest.mock to mock react-router-dom's `useNavigate` hook
-// 📜 https://jestjs.io/docs/en/jest-object#jestmockmodulename-factory-options
-// 💰 return {useNavigate: jest.fn()}
-// 🦉 Don't try to put `jest.mock` inside any of the functions below. It should
-// only appear at the root-level of this file, and it should never appear within
-// a callback function.
-
-// 💣 remove this, and you'll see the warning
-beforeAll(() => {
-  // this is here to silence a warning temporarily
-  // we'll fix it in the next exercise
-  jest.spyOn(console, 'error').mockImplementation(() => {})
-})
-
-// 💣 remove this too
-afterAll(() => {
-  console.error.mockRestore()
-})
-
-beforeEach(() => {
-  // 🐨 reset the useNavigate mock using .mockReset()
-  // 🐨 we'll also want to remove `token` from localStorage so that's clean.
-  // 💰 window.localStorage.removeItem('token')
-})
-
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  // 🐨 create a mock jest function (💰 `jest.fn()`) and assign it to "mockNavigate"
-  // 🐨 take `useNavigate` (which is a mock function) and mock it's
-  //    implementation to return your mockNavigate variable
-  // 🦉 This means that when the source code calls useNavigate, it will get
-  //    your mockNavigate function and it will call that function. Then you
-  //    can assert it was called correctly.
-
-  const fakeToken = 'fake-token'
-  window.fetch.mockResolvedValueOnce({
-    ok: true,
-    json: () => Promise.resolve({token: fakeToken}),
+// 💰 I'm going to give you this handy utility function
+// it allows you to create a promise that you can resolve/reject on demand.
+function deferred() {
+  let resolve, reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
   })
+  return {promise, resolve, reject}
+}
+// 💰 Here's an example of how you use this:
+// const {promise, resolve, reject} = deferred()
+// promise.then(() => {/* do something */})
+// // do other setup stuff and assert on the pending state
+// resolve()
+// await promise
+// // assert on the resolved state
 
-  render(<Login />)
-  const {username, password} = buildLoginForm()
-
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByRole('button', {name: /submit/i}))
-
-  await screen.findByLabelText(/loading/i)
-
-  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
-    method: 'POST',
-    body: JSON.stringify({username, password}),
-    headers: {'content-type': 'application/json'},
-  })
-
-  // 🐨 assert that `mockNavigate` was called with the right arguments
-  // 🐨 assert that `mockNavigate` was called only once
-
-  // 🐨 assert that localStorage's "token" item is "fake-token"
-  // 💰 window.localStorage.getItem('token')
+test('displays the users current location', async () => {
+  // 🐨 create a fakePosition object that has an object called "coords" with latitude and longitude
+  // 📜 https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPosition
+  //
+  // 🐨 create a deferred promise here
+  //
+  // 🐨 Now we need to mock the geolocation's getCurrentPosition function
+  // To mock something you need to know it's API and simulate that in your mock:
+  // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+  //
+  // here's an example of the API:
+  // function success(position) {}
+  // function error(error) {}
+  // navigator.geolocation.getCurrentPosition(success, error)
+  //
+  // 🐨 so call mockImplementation on getCurrentPosition
+  // 🐨 the first argument of your mock should accept a callback
+  // 🐨 you'll call the callback when the deferred promise resolves
+  // 💰 promise.then(() => {/* call the callback with the fake position */})
+  //
+  // 🐨 now that setup is done, render the Location component itself
+  //
+  // 🐨 verify the loading spinner is showing up
+  // 💰 tip: try running screen.debug() to know what the DOM looks like at this point.
+  //
+  // 🐨 resolve the deferred promise
+  // 🐨 wait for the promise to resolve
+  // 💰 right around here, you'll probably notice you get an error log in the
+  // test output. You can ignore that for now and just add this next line:
+  // act(() => {})
+  //
+  // If you'd like, learn about what this means and see if you can figure out
+  // how to make the warning go away (tip, you'll need to use async act)
+  // 📜 https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
+  //
+  // 🐨 verify the loading spinner is no longer in the document
+  //    (💰 use queryByLabelText instead of getByLabelText)
+  // 🐨 verify the latitude and longitude appear correctly
 })
+
+/*
+eslint
+  no-unused-vars: "off",
+*/

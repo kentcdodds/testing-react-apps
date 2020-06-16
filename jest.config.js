@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect',
-    path.join(__dirname, 'src/test/setup'),
+    'whatwg-fetch',
   ],
   resetMocks: true,
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],

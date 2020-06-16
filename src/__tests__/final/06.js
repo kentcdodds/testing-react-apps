@@ -1,58 +1,54 @@
-// mocking modules
-// http://localhost:3000/login-submission
+// mocking Browser APIs and modules
+// http://localhost:3000/location
 
 import React from 'react'
-import {render, screen} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import {useNavigate} from 'react-router-dom'
-import {build, fake} from '@jackfranklin/test-data-bot'
-import Login from '../../components/login-submission-with-navigate'
+import {render, screen, act} from '@testing-library/react'
+import Location from '../../examples/location'
 
-const buildLoginForm = build({
-  fields: {
-    username: fake(f => f.internet.userName()),
-    password: fake(f => f.internet.password()),
-  },
-})
-
-jest.mock('react-router-dom', () => {
-  return {
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
+beforeAll(() => {
+  window.navigator.geolocation = {
+    getCurrentPosition: jest.fn(),
   }
 })
 
-beforeEach(() => {
-  useNavigate.mockReset()
-  window.localStorage.removeItem('token')
-})
+function deferred() {
+  let resolve, reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
+  return {promise, resolve, reject}
+}
 
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const mockNavigate = jest.fn()
-  useNavigate.mockImplementation(() => mockNavigate)
+test('displays the users current location', async () => {
+  const fakePosition = {
+    coords: {
+      latitude: 35,
+      longitude: 139,
+    },
+  }
+  const {promise, resolve} = deferred()
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    callback => {
+      promise.then(() => callback(fakePosition))
+    },
+  )
 
-  const fakeToken = 'fake-token'
-  window.fetch.mockResolvedValueOnce({
-    ok: true,
-    json: () => Promise.resolve({token: fakeToken}),
+  render(<Location />)
+
+  expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
+
+  await act(() => {
+    resolve()
+    return promise
   })
 
-  render(<Login />)
-  const {username, password} = buildLoginForm()
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByRole('button', {name: /submit/i}))
-
-  await screen.findByLabelText(/loading/i)
-
-  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
-    method: 'POST',
-    body: JSON.stringify({username, password}),
-    headers: {'content-type': 'application/json'},
-  })
-
-  expect(mockNavigate).toHaveBeenCalledWith('/app')
-  expect(mockNavigate).toHaveBeenCalledTimes(1)
-  expect(window.localStorage.getItem('token')).toBe(fakeToken)
+  expect(screen.getByText(/latitude/i)).toHaveTextContent(
+    `Latitude: ${fakePosition.coords.latitude}`,
+  )
+  expect(screen.getByText(/longitude/i)).toHaveTextContent(
+    `Longitude: ${fakePosition.coords.longitude}`,
+  )
 })

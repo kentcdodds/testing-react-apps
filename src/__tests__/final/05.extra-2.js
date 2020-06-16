@@ -1,5 +1,5 @@
 // mocking HTTP requests
-// 💯 reuse server request handlers
+// 💯 test the unhappy path
 // http://localhost:3000/login-submission
 
 import React from 'react'
@@ -32,4 +32,19 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
 
   await screen.findByLabelText(/loading/i)
   await screen.findByText(username)
+})
+
+test('omitting the password results in an error', async () => {
+  render(<Login />)
+  const {username} = buildLoginForm()
+
+  userEvent.type(screen.getByLabelText(/username/i), username)
+  // don't type in the password
+  userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  await screen.findByLabelText(/loading/i)
+
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'password required',
+  )
 })

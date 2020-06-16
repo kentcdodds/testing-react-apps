@@ -5,6 +5,8 @@ import React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
+import {rest} from 'msw'
+import {setupServer} from 'msw/node'
 import Login from '../../components/login-submission'
 
 const buildLoginForm = build({
@@ -14,13 +16,25 @@ const buildLoginForm = build({
   },
 })
 
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const fakeToken = 'fake-token'
-  window.fetch.mockResolvedValueOnce({
-    ok: true,
-    json: () => Promise.resolve({token: fakeToken}),
-  })
+const server = setupServer(
+  rest.post(
+    'https://auth-provider.example.com/api/login',
+    async (req, res, ctx) => {
+      if (!req.body.password) {
+        return res(ctx.status(400), ctx.json({message: 'password required'}))
+      }
+      if (!req.body.username) {
+        return res(ctx.status(400), ctx.json({message: 'username required'}))
+      }
+      return res(ctx.json({username: req.body.username}))
+    },
+  ),
+)
 
+beforeAll(() => server.listen())
+afterAll(() => server.close())
+
+test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
@@ -29,11 +43,5 @@ test('submitting the form makes a POST to /login and redirects the user to /app'
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   await screen.findByLabelText(/loading/i)
-
-  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
-    method: 'POST',
-    body: JSON.stringify({username, password}),
-    headers: {'content-type': 'application/json'},
-  })
-  expect(window.fetch).toHaveBeenCalledTimes(1)
+  await screen.findByText(username)
 })

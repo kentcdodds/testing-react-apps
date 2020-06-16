@@ -1,90 +1,42 @@
-// mocking modules
-// 💯 test the unhappy path
-// http://localhost:3000/login-submission
+// mocking Browser APIs and modules
+// 💯 mock the module
+// http://localhost:3000/location
 
 import React from 'react'
-import {render, screen} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import {useNavigate} from 'react-router-dom'
-import {build, fake} from '@jackfranklin/test-data-bot'
-import Login from '../../components/login-submission-with-navigate'
+import {render, screen, act} from '@testing-library/react'
+import {useCurrentPosition} from 'react-use-geolocation'
+import Location from '../../examples/location'
 
-const buildLoginForm = build({
-  fields: {
-    username: fake(f => f.internet.userName()),
-    password: fake(f => f.internet.password()),
-  },
-})
+jest.mock('react-use-geolocation')
 
-jest.mock('react-router-dom', () => {
-  return {
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
+test('displays the users current location', async () => {
+  const fakePosition = {
+    coords: {
+      latitude: 35,
+      longitude: 139,
+    },
   }
-})
 
-beforeEach(() => {
-  useNavigate.mockReset()
-  window.localStorage.removeItem('token')
-})
-
-test('submitting the form makes a POST to /login and redirects the user to /app', async () => {
-  const mockNavigate = jest.fn()
-  useNavigate.mockImplementation(() => mockNavigate)
-
-  const fakeToken = 'fake-token'
-  window.fetch.mockResolvedValueOnce({
-    ok: true,
-    json: () => Promise.resolve({token: fakeToken}),
+  let setReturnValue
+  useCurrentPosition.mockImplementation(() => {
+    const state = React.useState([])
+    setReturnValue = state[1]
+    return state[0]
   })
 
-  render(<Login />)
-  const {username, password} = buildLoginForm()
+  render(<Location />)
 
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByRole('button', {name: /submit/i}))
+  expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
 
-  await screen.findByLabelText(/loading/i)
-
-  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
-    method: 'POST',
-    body: JSON.stringify({username, password}),
-    headers: {'content-type': 'application/json'},
+  act(() => {
+    setReturnValue([fakePosition])
   })
 
-  expect(mockNavigate).toHaveBeenCalledWith('/app')
-  expect(mockNavigate).toHaveBeenCalledTimes(1)
-  expect(window.localStorage.getItem('token')).toBe(fakeToken)
-})
-
-test('an error is displayed in the event of a failure', async () => {
-  const mockNavigate = jest.fn()
-  useNavigate.mockImplementation(() => mockNavigate)
-
-  const errorMessage = 'Oh no!'
-  window.fetch.mockResolvedValueOnce({
-    ok: false,
-    json: () => Promise.resolve({errors: [errorMessage]}),
-  })
-
-  render(<Login />)
-  const {username, password} = buildLoginForm()
-
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByRole('button', {name: /submit/i}))
-
-  await screen.findByLabelText(/loading/i)
-
-  expect(window.fetch).toHaveBeenCalledWith('/api/login', {
-    method: 'POST',
-    body: JSON.stringify({username, password}),
-    headers: {'content-type': 'application/json'},
-  })
-
-  expect(await screen.findByRole('alert')).toHaveTextContent(errorMessage)
-
-  expect(mockNavigate).not.toHaveBeenCalled()
-  expect(window.localStorage.getItem('token')).toBeFalsy()
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+  expect(screen.getByText(/latitude/i)).toHaveTextContent(
+    `Latitude: ${fakePosition.coords.latitude}`,
+  )
+  expect(screen.getByText(/longitude/i)).toHaveTextContent(
+    `Longitude: ${fakePosition.coords.longitude}`,
+  )
 })

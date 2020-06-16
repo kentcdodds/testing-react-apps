@@ -143,7 +143,7 @@ tools and patterns described.
 - 💪 04. form testing
 - 🌮 30 Minutes
 - 💪 05. mocking HTTP requests
-- 💪 06. mocking modules
+- 💪 06. mocking Browser APIs and modules
 - 😴 10 Minutes
 - 💪 07. testing with context and a custom render method
 - 😴 10 Minutes
@@ -221,6 +221,7 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the

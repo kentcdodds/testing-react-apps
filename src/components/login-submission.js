@@ -4,15 +4,11 @@
 // submits the formData to /api/login and redirects the user or shows an error
 // message if the request failed.
 //
-// NOTE: that while this is calling `fetch`, we're actually NOT making a real
-// HTTP call in this app. If you checkout `hack-fetch.js` you'll notice that
-// we're overriding fetch to serve a fake response for the purposes of our demo
-// app.
-// 🚨  In the app you can simulate a failure by using "fail" as the password.
-//     (this does not apply to the tests however).
+// 🚨  You can see a failure by not providing a username or password
 
 import React from 'react'
 import Login from './login'
+import Spinner from './spinner'
 
 function formSubmissionReducer(state, action) {
   switch (action.type) {
@@ -27,11 +23,10 @@ function formSubmissionReducer(state, action) {
       }
     }
     case 'REJECT': {
-      console.log(action)
       return {
         status: 'rejected',
         responseData: null,
-        errorMessage: action.error.errors[0],
+        errorMessage: action.error.message,
       }
     }
     default:
@@ -73,33 +68,21 @@ function useFormSubmission({endpoint, data}) {
   return state
 }
 
-function Spinner() {
-  return (
-    <div className="lds-ripple" aria-label="loading...">
-      <div />
-      <div />
-    </div>
-  )
-}
-
 function LoginSubmission() {
   const [formData, setFormData] = React.useState(null)
   const {status, responseData, errorMessage} = useFormSubmission({
-    endpoint: '/api/login',
+    endpoint: 'https://auth-provider.example.com/api/login',
     data: formData,
   })
-
-  const token = responseData?.token
-  React.useEffect(() => {
-    if (token) {
-      window.localStorage.setItem('token', token)
-      // TODO: navigate away on submission success
-    }
-  }, [token])
 
   return (
     <>
       <Login onSubmit={data => setFormData(data)} />
+      {status === 'resolved' ? (
+        <div>
+          Welcome <strong>{responseData.username}</strong>
+        </div>
+      ) : null}
       {status === 'pending' ? <Spinner /> : null}
       {status === 'rejected' ? (
         <div role="alert" style={{color: 'red'}}>

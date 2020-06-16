@@ -40,7 +40,8 @@
     "react-error-boundary": "^2.2.2",
     "react-router": "^6.0.0-alpha.2",
     "react-router-dom": "^6.0.0-alpha.2",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "react-use-geolocation": "^0.1.1"
   },
   "devDependencies": {
     "@jackfranklin/test-data-bot": "^1.3.0",
@@ -52,9 +53,11 @@
     "jest": "^26.0.1",
     "jest-watch-select-projects": "^2.0.0",
     "jest-watch-typeahead": "^0.6.0",
+    "msw": "^0.19.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "eslintConfig": {
     "extends": [

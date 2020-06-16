@@ -1,4 +1,4 @@
-import './hack-fetch'
+import './test/server'
 import './styles.css'
 
 import React from 'react'
