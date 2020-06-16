@@ -18,14 +18,14 @@ test('displays the users current location', async () => {
   }
 
   let setReturnValue
-  useCurrentPosition.mockImplementation(() => {
+  function useMockCurrentPosition() {
     const state = React.useState([])
     setReturnValue = state[1]
     return state[0]
-  })
+  }
+  useCurrentPosition.mockImplementation(useMockCurrentPosition)
 
   render(<Location />)
-
   expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
 
   act(() => {
