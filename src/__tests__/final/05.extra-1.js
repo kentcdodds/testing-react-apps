@@ -3,7 +3,7 @@
 // http://localhost:3000/login-submission
 
 import React from 'react'
-import {render, screen} from '@testing-library/react'
+import {render, screen, waitForElementToBeRemoved} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
 import {setupServer} from 'msw/node'
@@ -30,8 +30,7 @@ test(`logging in displays the user's username`, async () => {
   userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+  await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
 
-  expect(await screen.findByText(username)).toBeInTheDocument()
-  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+  expect(screen.getByText(username)).toBeInTheDocument()
 })

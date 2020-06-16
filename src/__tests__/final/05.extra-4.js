@@ -3,7 +3,7 @@
 // http://localhost:3000/login-submission
 
 import React from 'react'
-import {render, screen} from '@testing-library/react'
+import {render, screen, waitForElementToBeRemoved} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'
 import {rest} from 'msw'
@@ -32,10 +32,9 @@ test(`logging in displays the user's username`, async () => {
   userEvent.type(screen.getByLabelText(/password/i), password)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+  await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
 
-  expect(await screen.findByText(username)).toBeInTheDocument()
-  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+  expect(screen.getByText(username)).toBeInTheDocument()
 })
 
 test('omitting the password results in an error', async () => {
@@ -46,12 +45,11 @@ test('omitting the password results in an error', async () => {
   // don't type in the password
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+  await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
 
-  expect((await screen.findByRole('alert')).textContent).toMatchInlineSnapshot(
+  expect(screen.getByRole('alert').textContent).toMatchInlineSnapshot(
     `"password required"`,
   )
-  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
 })
 
 test('unknown server error displays the error message', async () => {
@@ -67,8 +65,7 @@ test('unknown server error displays the error message', async () => {
   render(<Login />)
   userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
-  expect(await screen.findByLabelText(/loading/i)).toBeInTheDocument()
+  await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
 
-  expect(await screen.findByRole('alert')).toHaveTextContent(testErrorMessage)
-  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+  expect(screen.getByRole('alert')).toHaveTextContent(testErrorMessage)
 })
