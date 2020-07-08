@@ -238,7 +238,7 @@ specification. Contributions of any kind welcome!
 [build-badge]: https://img.shields.io/travis/com/kentcdodds/testing-react-apps.svg?style=flat-square&logo=travis
 [build]: https://travis-ci.com/kentcdodds/testing-react-apps
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-[license]: https://github.com/kentcdodds/testing-react-apps/blob/master/README.md#license
+[license]: https://github.com/kentcdodds/react-fundamentals/blob/master/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
