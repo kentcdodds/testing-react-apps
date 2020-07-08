@@ -5,8 +5,8 @@ workshop repo to teach you about increasing your deploy confidence by using Jest
 and React Testing Library to test your react components.
 
 <div align="center">
+  <h2><a href="https://epicreact.dev">EpicReact.Dev</a></h2>
   <a href="https://epicreact.dev">
-    <h2>EpicReact.Dev</h2>
     <img
       width="500"
       alt="Learn React from Start to Finish"
