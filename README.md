@@ -5,11 +5,11 @@ workshop repo to teach you about increasing your deploy confidence by using Jest
 and React Testing Library to test your react components.
 
 <div align="center">
-  <a href="https://testingjavascript.com">
+  <a href="https://epicreact.dev">
     <img
       width="500"
-      alt="TestingJavaScript.com Learn the smart, efficient way to test any JavaScript application."
-      src="https://raw.githubusercontent.com/kentcdodds/testing-react-apps/master/other/testingjavascript.jpg"
+      alt="Learn React from Start to Finish"
+      src="https://kentcdodds.com/images/epicreact-promo/er-1.gif"
     />
   </a>
 </div>
@@ -227,13 +227,6 @@ Thanks goes to these wonderful people
 This project follows the
 [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification. Contributions of any kind welcome!
-
-## License
-
-This material is available for private, non-commercial use under the
-[GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html). If you
-would like to use this material to conduct your own workshop, please contact me
-at me@kentcdodds.com
 
 <!-- prettier-ignore-start -->
 [npm]: https://www.npmjs.com/
