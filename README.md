@@ -6,6 +6,7 @@ and React Testing Library to test your react components.
 
 <div align="center">
   <a href="https://epicreact.dev">
+    <h2>EpicReact.Dev</h2>
     <img
       width="500"
       alt="Learn React from Start to Finish"
@@ -13,6 +14,8 @@ and React Testing Library to test your react components.
     />
   </a>
 </div>
+
+<hr />
 
 [![Travis Build Status][build-badge]][build]
 [![AppVeyor Build Status][win-build-badge]][win-build]
