@@ -31,6 +31,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "pom421",
+      "name": "pom421",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3749428?v=4",
+      "profile": "https://github.com/pom421",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
