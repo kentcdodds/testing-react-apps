@@ -1,11 +1,14 @@
-# Testing React Applications 🧐
+<div>
+  <h1 align="center"><a href="https://epicreact.dev">🧐 Testing React Applications 🚀 EpicReact.Dev</a></h1>
+  <strong>
+    Learn the essential tools and techniques to ship with confidence
+  </strong>
+  <p>
+    In this hands-on workshop you'll learn everything you need to test React
+    components and applications with ease and get the knowledge you need to ship
+    your applications with confidence.
+  </p>
 
-👋 hi there! My name is [Kent C. Dodds](https://kentcdodds.com)! This is a
-workshop repo to teach you about increasing your deploy confidence by using Jest
-and React Testing Library to test your react components.
-
-<div align="center">
-  <h2><a href="https://epicreact.dev">EpicReact.Dev</a></h2>
   <a href="https://epicreact.dev">
     <img
       alt="Learn React from Start to Finish"
@@ -16,40 +19,19 @@ and React Testing Library to test your react components.
 
 <hr />
 
-[![Travis Build Status][build-badge]][build]
+<!-- prettier-ignore-start -->
+[![Build Status][build-badge]][build]
 [![AppVeyor Build Status][win-build-badge]][win-build]
-[![GPL-3.0 License][license-badge]][license]
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
-[![PRs Welcome][prs-badge]][prs] [![Code of Conduct][coc-badge]][coc]
+[![GPL 3.0 License][license-badge]][license]
+[![Code of Conduct][coc-badge]][coc]
+<!-- prettier-ignore-end -->
 
-## Pre-Workshop Instructions/Requirements
+## Prerequisites
 
-In order for us to maximize our efforts during the workshop, please complete the
-following things to prepare.
-
-- 📺 only necessary if the workshop is remote via Zoom
-- 👋 specific to the material for this workshop
-
-- [ ] 👋 Setup the project (follow the setup instructions below) (~5 minutes)
-- [ ] 📺 Install and setup [Zoom](https://zoom.us) on the computer you will be
-      using (~5 minutes)
-- [ ] 📺 Watch
-      [Use Zoom for KCD Workshops](https://egghead.io/lessons/egghead-use-zoom-for-kcd-workshops)
-      (~8 minutes).
-- [ ] 👋 Watch [The Beginner's Guide to React](https://kcd.im/beginner-react)
-      (available free on Egghead.io), or have the equivalent experience with
-      React (147 minutes)
-- [ ] 👋 Go through my
-      [Learn React Hooks Workshop](https://kentcdodds.com/workshops/hooks), or
-      have the equivalent basic experience of using hooks. You should be
-      experienced with `useState`, `useEffect`, and `useRef`.
-- [ ] 👋 Go through my
-      [Advanced React Hooks](https://kentcdodds.com/workshops/advanced-react-hooks),
-      or have the equivalent basic experience of using advanced hooks. You
-      should be experienced with `useContext`, `useReducer`, `useMemo`, and
-      `useCallback`.
-
-The more prepared you are for the workshop, the better it will go for you.
+- Read
+  [But really, what is a JavaScript Test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test)
+- Read
+  [But really, what is a JavaScript Mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock)
 
 ## System Requirements
 
@@ -81,6 +63,10 @@ cd testing-react-apps
 npm run setup --silent
 ```
 
+This may take a few minutes. **It will ask you for your email.** This is
+optional and just automatically adds your email to the links in the project to
+make filling out some forms easier.
+
 If you get any errors, please read through them and see if you can find out what
 the problem is. If you can't work it out on your own then please [file an
 issue][issue] and provide _all_ the output from the commands you ran (even if
@@ -88,7 +74,11 @@ it's a lot).
 
 ## Running the app
 
-To get the app up and running (and really see if it worked), run:
+For this one, there's not much to the app itself. The whole reason we have the
+app is just so you can see examples of the components that we'll be testing.
+You'll spend most of your time in the tests.
+
+To get the app up and running, run:
 
 ```shell
 npm start
@@ -100,9 +90,6 @@ This should start up your browser. If you're familiar, this is a standard
 You can also open
 [the deployment of the app on Netlify](https://testing-react-apps.netlify.app/).
 
-There's not much to it. The whole reason we have the app is just so you can see
-examples of the components that we'll be testing.
-
 ## Running the tests
 
 ```shell
@@ -110,58 +97,10 @@ npm test
 ```
 
 This will start [Jest](https://jestjs.io/) in watch mode. Read the output and
-play around with it. All the tests will start out in a passing state. Your job
-will be to follow the emoji's instructions to test the components using the
-tools and patterns described.
-
-## Workshop Outline
-
-> Let's get some rock-solid confidence in our React Apps! 💎
-
-👋 I'm Kent C. Dodds
-
-- 🏡 Utah
-- 👩 👧 👦 👦 👦 🐕
-- 🏢 https://kentcdodds.com
-- 🐦/🐙 @kentcdodds
-- 🏆 https://testingjavascript.com
-- 🥚 https://kcd.im/egghead
-- 🥋 https://kcd.im/fem
-- 💌 https://kcd.im/news
-- 📝 https://kcd.im/blog
-- 📺 https://kcd.im/devtips
-- 💻 https://kcd.im/coding
-- 📽 https://kcd.im/youtube
-- 🎙 https://kcd.im/3-mins
-- ❓ https://kcd.im/ama
-
-### Schedule
-
-- 😴 Logistics
-- 💪 01. simple test with ReactDOM
-- 💪 02. simple test with React Testing Library
-- 😴 10 Minutes
-- 💪 03. Avoid implementation details
-- 💪 04. form testing
-- 🌮 30 Minutes
-- 💪 05. mocking HTTP requests
-- 💪 06. mocking Browser APIs and modules
-- 😴 10 Minutes
-- 💪 07. testing with context and a custom render method
-- 😴 10 Minutes
-- 💪 08. testing custom hooks
-- ❓ Q&A
-
-### Questions
-
-Please do ask! Interrupt me. If you have an unrelated question, please ask on
-[my AMA](https://kcd.im/ama).
-
-### Zoom (for remote workshops)
-
-- Help us make this more human by keeping your video on if possible
-- Keep microphone muted unless speaking
-- Breakout rooms
+play around with it. The tests are there to help you reach the final version,
+however _sometimes_ you can accomplish the task and the tests still fail if you
+implement things differently than I do in my solution, so don't look to them as
+a complete authority.
 
 ### Exercises
 
@@ -198,14 +137,6 @@ emoji characters are here to help you.
 - **Alfred the Alert** 🚨 will occasionally show up in the test failures with
   potential explanations for why the tests are failing.
 
-## Workshop Feedback
-
-Each exercise has an Elaboration and Feedback link. Please fill that out after
-the exercise and instruction.
-
-At the end of the workshop, please go to this URL to give overall feedback.
-Thank you! https://kcd.im/tra-ws-feedback
-
 ## Contributors
 
 Thanks goes to these wonderful people
@@ -230,16 +161,22 @@ This project follows the
 [all-contributors](https://github.com/kentcdodds/all-contributors)
 specification. Contributions of any kind welcome!
 
+## Workshop Feedback
+
+Each exercise has an Elaboration and Feedback link. Please fill that out after
+the exercise and instruction.
+
+At the end of the workshop, please go to this URL to give overall feedback.
+Thank you! https://kcd.im/tra-ws-feedback
+
 <!-- prettier-ignore-start -->
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/travis/com/kentcdodds/testing-react-apps.svg?style=flat-square&logo=travis
-[build]: https://travis-ci.com/kentcdodds/testing-react-apps
+[build-badge]: https://img.shields.io/travis/kentcdodds/testing-react-apps.svg?style=flat-square&logo=travis
+[build]: https://travis-ci.org/kentcdodds/testing-react-apps
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
-[license]: https://github.com/kentcdodds/react-fundamentals/blob/master/LICENSE
-[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
-[prs]: http://makeapullrequest.com
+[license]: https://github.com/kentcdodds/testing-react-apps/blob/master/LICENSE
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
 [coc]: https://github.com/kentcdodds/testing-react-apps/blob/master/CODE_OF_CONDUCT.md
 [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
