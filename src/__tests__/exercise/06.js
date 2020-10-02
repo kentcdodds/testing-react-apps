@@ -32,7 +32,7 @@ test('displays the users current location', async () => {
   // 🐨 create a deferred promise here
   //
   // 🐨 Now we need to mock the geolocation's getCurrentPosition function
-  // To mock something you need to know it's API and simulate that in your mock:
+  // To mock something you need to know its API and simulate that in your mock:
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
   //
   // here's an example of the API:
