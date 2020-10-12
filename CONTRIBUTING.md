@@ -41,4 +41,4 @@ requests! Thanks!
 
 [egghead]:
   https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github
-[issues]: https://github.com/kentcdodds/react-testing-workshop/issues
+[issues]: https://github.com/kentcdodds/testing-react-apps/issues
