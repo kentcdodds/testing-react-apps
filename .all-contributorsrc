@@ -86,6 +86,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "tiodan81",
+      "name": "Dan Schwartz",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13711104?v=4",
+      "profile": "https://github.com/tiodan81",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
