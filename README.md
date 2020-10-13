@@ -176,6 +176,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/milamer"><img src="https://avatars2.githubusercontent.com/u/12884134?v=4" width="100px;" alt=""/><br /><sub><b>Christian Schurr</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=milamer" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=milamer" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/tiodan81"><img src="https://avatars2.githubusercontent.com/u/13711104?v=4" width="100px;" alt=""/><br /><sub><b>Dan Schwartz</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=tiodan81" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://wbeuil.com"><img src="https://avatars1.githubusercontent.com/u/8110579?v=4" width="100px;" alt=""/><br /><sub><b>William BEUIL</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=wbeuil" title="Documentation">📖</a></td>
   </tr>
 </table>
 
