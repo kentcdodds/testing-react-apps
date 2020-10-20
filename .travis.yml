@@ -1,14 +1,12 @@
 sudo: false
 language: node_js
-cache:
-  directories:
-    - ~/.npm
-    - ~/.cache
+node_js: 14
+install: echo "Installation happens in the setup script"
+cache: npm
 notifications:
   email: false
-node_js: '10'
-install: echo "install happens as part of setup"
+branches:
+  only:
+    - main
 script: npm run setup
 after_script: npx codecov@3
-branches:
-  only: main
