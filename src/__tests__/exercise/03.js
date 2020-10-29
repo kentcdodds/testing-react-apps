@@ -1,7 +1,7 @@
 // Avoid implementation details
 // http://localhost:3000/counter
 
-import React from 'react'
+import * as React from 'react'
 // 🐨 add `screen` to the import here:
 import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'

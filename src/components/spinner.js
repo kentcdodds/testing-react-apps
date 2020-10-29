@@ -1,6 +1,6 @@
 // http://localhost:3000/spinner
 
-import React from 'react'
+import * as React from 'react'
 
 function Spinner() {
   return (

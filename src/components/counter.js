@@ -1,6 +1,6 @@
 // http://localhost:3000/counter
 
-import React from 'react'
+import * as React from 'react'
 
 function Counter() {
   const [count, setCount] = React.useState(0)

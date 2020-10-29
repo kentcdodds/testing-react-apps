@@ -2,7 +2,7 @@
 // 💯 use dispatchEvent
 // http://localhost:3000/counter
 
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import Counter from '../../components/counter'
 

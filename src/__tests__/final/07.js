@@ -1,7 +1,7 @@
 // testing with context and a custom render method
 // http://localhost:3000/easy-button
 
-import React from 'react'
+import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import {ThemeProvider} from '../../components/theme'
 import EasyButton from '../../components/easy-button'
