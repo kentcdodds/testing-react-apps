@@ -1,7 +1,7 @@
 // simple test with React Testing Library
 // http://localhost:3000/counter
 
-import React from 'react'
+import * as React from 'react'
 import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 

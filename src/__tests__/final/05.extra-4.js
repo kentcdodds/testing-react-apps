@@ -2,7 +2,7 @@
 // 💯 use one-off server handlers
 // http://localhost:3000/login-submission
 
-import React from 'react'
+import * as React from 'react'
 import {render, screen, waitForElementToBeRemoved} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'

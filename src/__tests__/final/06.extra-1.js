@@ -2,7 +2,7 @@
 // 💯 mock the module
 // http://localhost:3000/location
 
-import React from 'react'
+import * as React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import {useCurrentPosition} from 'react-use-geolocation'
 import Location from '../../examples/location'

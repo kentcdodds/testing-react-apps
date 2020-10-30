@@ -2,7 +2,7 @@
 // 💯 use Test Data Bot
 // http://localhost:3000/login
 
-import React from 'react'
+import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {build, fake} from '@jackfranklin/test-data-bot'

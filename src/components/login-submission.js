@@ -6,7 +6,7 @@
 //
 // 🚨  You can see a failure by not providing a username or password
 
-import React from 'react'
+import * as React from 'react'
 import Login from './login'
 import Spinner from './spinner'
 

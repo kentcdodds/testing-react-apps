@@ -1,7 +1,7 @@
 // http://localhost:3000/easy-button
 // NOTE: this component wont work by itself, so we have the example :)
 
-import React from 'react'
+import * as React from 'react'
 import {useTheme} from './theme'
 
 const styles = {
