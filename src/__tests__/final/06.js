@@ -52,3 +52,37 @@ test('displays the users current location', async () => {
     `Longitude: ${fakePosition.coords.longitude}`,
   )
 })
+
+test('displays error message when geolocation is not supported', async () => {
+  const fakePosition = {
+    coords: {
+      latitude: 59,
+      longitude: 18,
+    },
+  }
+  const fakeError = new Error(
+    'Geolocation is not supported or permission denied',
+  )
+  const {promise, reject} = deferred()
+
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    (successCallback, errorCallback) => {
+      promise.then(
+        () => successCallback(fakePosition),
+        () => errorCallback(fakeError),
+      )
+    },
+  )
+
+  render(<Location />)
+
+  expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
+
+  await act(async () => {
+    reject()
+  })
+
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+
+  expect(screen.getByRole('alert')).toHaveTextContent(fakeError.message)
+})
