@@ -54,12 +54,6 @@ test('displays the users current location', async () => {
 })
 
 test('displays error message when geolocation is not supported', async () => {
-  const fakePosition = {
-    coords: {
-      latitude: 59,
-      longitude: 18,
-    },
-  }
   const fakeError = new Error(
     'Geolocation is not supported or permission denied',
   )
@@ -67,10 +61,7 @@ test('displays error message when geolocation is not supported', async () => {
 
   window.navigator.geolocation.getCurrentPosition.mockImplementation(
     (successCallback, errorCallback) => {
-      promise.then(
-        () => successCallback(fakePosition),
-        () => errorCallback(fakeError),
-      )
+      promise.catch(() => errorCallback(fakeError))
     },
   )
 
