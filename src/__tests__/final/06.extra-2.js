@@ -1,4 +1,5 @@
 // mocking Browser APIs and modules
+// 💯 test the unhappy path
 // http://localhost:3000/location
 
 import React from 'react'
@@ -51,4 +52,29 @@ test('displays the users current location', async () => {
   expect(screen.getByText(/longitude/i)).toHaveTextContent(
     `Longitude: ${fakePosition.coords.longitude}`,
   )
+})
+
+test('displays error message when geolocation is not supported', async () => {
+  const fakeError = new Error(
+    'Geolocation is not supported or permission denied',
+  )
+  const {promise, reject} = deferred()
+
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    (successCallback, errorCallback) => {
+      promise.catch(() => errorCallback(fakeError))
+    },
+  )
+
+  render(<Location />)
+
+  expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
+
+  await act(async () => {
+    reject()
+  })
+
+  expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument()
+
+  expect(screen.getByRole('alert')).toHaveTextContent(fakeError.message)
 })
