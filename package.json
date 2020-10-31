@@ -15,7 +15,7 @@
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false",
     "test:exercises": "npm run test -- testing.*exercises\\/ --onlyChanged",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "format": "prettier \"**/*.+(js|json|less|css|html|ts|tsx|md)\" --write",
     "lint": "eslint .",
     "validate": "npm-run-all --parallel lint test:coverage build",
