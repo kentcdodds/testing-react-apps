@@ -182,6 +182,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://twitter.com/peramanathan"><img src="https://avatars2.githubusercontent.com/u/9104920?v=4" width="100px;" alt=""/><br /><sub><b>Peramanathan Sathyamoorthy</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=p10ns11y" title="Tests">⚠️</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=p10ns11y" title="Code">💻</a></td>
     <td align="center"><a href="https://michaeldeboey.be"><img src="https://avatars3.githubusercontent.com/u/6643991?v=4" width="100px;" alt=""/><br /><sub><b>Michaël De Boey</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=MichaelDeBoey" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://bartwijnants.be/"><img src="https://avatars1.githubusercontent.com/u/822859?v=4" width="100px;" alt=""/><br /><sub><b>Bart Wijnants</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=bartw" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->

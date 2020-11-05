@@ -141,6 +141,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bartw",
+      "name": "Bart Wijnants",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/822859?v=4",
+      "profile": "https://bartwijnants.be/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
