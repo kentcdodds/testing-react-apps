@@ -28,7 +28,7 @@ const buildLoginForm = build({
 // 🐨 before all the tests, start the server with `server.listen()`
 // 🐨 after all the tests, stop the server with `server.close()`
 
-test(`logging in displays the user's username`, async () => {
+test(`login in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 

@@ -24,7 +24,7 @@ beforeAll(() => server.listen())
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
 
-test(`logging in displays the user's username`, async () => {
+test(`login in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
