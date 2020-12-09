@@ -160,6 +160,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "falldowngoboone",
+      "name": "Ryan Boone",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3603771?v=4",
+      "profile": "https://github.com/falldowngoboone",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
