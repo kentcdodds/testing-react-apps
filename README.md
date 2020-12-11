@@ -193,12 +193,12 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://bartwijnants.be/"><img src="https://avatars1.githubusercontent.com/u/822859?v=4" width="100px;" alt=""/><br /><sub><b>Bart Wijnants</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=bartw" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.daleseo.com"><img src="https://avatars1.githubusercontent.com/u/5466341?v=4" width="100px;" alt=""/><br /><sub><b>Dale Seo</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=DaleSeo" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=DaleSeo" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/falldowngoboone"><img src="https://avatars0.githubusercontent.com/u/3603771?v=4" width="100px;" alt=""/><br /><sub><b>Ryan Boone</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=falldowngoboone" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://bobowen.tech"><img src="https://avatars3.githubusercontent.com/u/603731?v=4" width="100px;" alt=""/><br /><sub><b>Bob Owen</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=onetruebob" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=onetruebob" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the
