@@ -169,6 +169,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "onetruebob",
+      "name": "Bob Owen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/603731?v=4",
+      "profile": "https://bobowen.tech",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"
