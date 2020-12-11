@@ -32,13 +32,13 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "license": "GPL-3.0",
   "dependencies": {
-    "@testing-library/react": "^11.1.2",
-    "@testing-library/react-hooks": "^3.4.2",
-    "@testing-library/user-event": "^12.2.2",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.7.0",
+    "@testing-library/user-event": "^12.5.0",
     "import-all.macro": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-error-boundary": "^3.0.2",
+    "react-error-boundary": "^3.1.0",
     "react-router": "^6.0.0-alpha.2",
     "react-router-dom": "^6.0.0-alpha.2",
     "react-test-renderer": "^17.0.1",
@@ -47,15 +47,15 @@
   "devDependencies": {
     "@jackfranklin/test-data-bot": "^1.3.0",
     "@testing-library/jest-dom": "^5.11.6",
-    "@types/react": "^16.9.56",
-    "@types/react-dom": "^16.9.9",
-    "eslint": "^7.13.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "eslint": "^7.15.0",
     "faker": "^5.1.0",
-    "husky": "^4.3.0",
-    "msw": "^0.21.3",
+    "husky": "^4.3.5",
+    "msw": "^0.24.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.1.2",
-    "react-scripts": "^4.0.0"
+    "prettier": "^2.2.1",
+    "react-scripts": "^4.0.1"
   },
   "eslintConfig": {
     "extends": [
