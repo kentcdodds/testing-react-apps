@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center"><a href="https://epicreact.dev">🧐 Testing React Applications 🚀 EpicReact.Dev</a></h1>
+  <h1 align="center"><a href="https://epicreact.dev/testing">🧐 Testing React Applications 🚀 EpicReact.Dev</a></h1>
   <strong>
     Learn the essential tools and techniques to ship with confidence
   </strong>
