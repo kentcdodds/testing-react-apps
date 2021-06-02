@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    {"path": "config/tsconfig.exercise.json"},
+    {"path": "config/tsconfig.final.json"}
+  ],
+  "compilerOptions": {
+    "baseUrl": "./src"
+  }
+}

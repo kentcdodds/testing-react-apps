@@ -14,8 +14,6 @@ Hey there 👋 I'm Kent C. Dodds. Here's some info about me:
 - 🎙 https://kcd.im/podcast
 - 💌 https://kcd.im/news
 - 📝 https://kcd.im/blog
-- 📺 https://kcd.im/devtips
-- 👨‍💻 https://kcd.im/coding
 - 📽 https://kcd.im/youtube
 
 This workshop is part of the series of self-paced workshops on
