@@ -9,9 +9,10 @@
   "main": "index.js",
   "engines": {
     "node": "12 || 14 || 15 || 16",
-    "npm": ">=6"
+    "npm": ">=7"
   },
   "scripts": {
+    "postinstall": "patch-package --patch-dir config/patches",
     "build": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
@@ -20,9 +21,10 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "format": "prettier \"**/*.+(js|json|less|css|html|ts|tsx|md)\" --write",
     "lint": "eslint .",
-    "validate": "npm-run-all --parallel lint test:coverage build",
+    "validate": "npm-run-all --parallel build test:coverage lint typecheck",
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
-    "setup": "node setup"
+    "setup": "node setup",
+    "typecheck": "tsc -b"
   },
   "husky": {
     "hooks": {
@@ -32,9 +34,9 @@
   },
   "keywords": [],
   "dependencies": {
-    "@testing-library/react": "^12.1.0",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.2.1",
+    "@testing-library/user-event": "^13.5.0",
     "import-all.macro": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -47,16 +49,17 @@
   "devDependencies": {
     "@jackfranklin/test-data-bot": "^1.3.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@types/react": "^17.0.21",
+    "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
-    "eslint": "^7.32.0",
     "faker": "^5.5.3",
     "husky": "^4.3.8",
     "msw": "^0.35.0",
     "npm-run-all": "^4.1.5",
+    "patch-package": "^6.4.7",
     "prettier": "^2.4.1",
     "react-scripts": "^4.0.3",
-    "typescript": "^4.4.3"
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
   },
   "eslintConfig": {
     "extends": [
@@ -82,7 +85,7 @@
   "bugs": {
     "url": "https://github.com/kentcdodds/testing-react-app/issues"
   },
-  "homepage": "https://testing-react-app.netlify.app",
+  "homepage": "https://testing-react-app-next.netlify.app",
   "browserslist": [
     ">0.2%",
     "not dead",

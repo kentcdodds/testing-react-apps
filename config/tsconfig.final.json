@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.shared.json",
+  "exclude": ["../src/__tests__/exercise/"],
+  "include": ["../src"],
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
