@@ -195,6 +195,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/falldowngoboone"><img src="https://avatars0.githubusercontent.com/u/3603771?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ryan Boone</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=falldowngoboone" title="Documentation">📖</a></td>
     <td align="center"><a href="https://bobowen.tech"><img src="https://avatars3.githubusercontent.com/u/603731?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bob Owen</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=onetruebob" title="Code">💻</a> <a href="https://github.com/kentcdodds/testing-react-apps/commits?author=onetruebob" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.sharpbites.com"><img src="https://avatars.githubusercontent.com/u/72561?v=4?s=100" width="100px;" alt=""/><br /><sub><b>alberto</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=alberto" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/marioleed"><img src="https://avatars.githubusercontent.com/u/1763448?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mario Sannum</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=marioleed" title="Code">💻</a></td>
   </tr>
 </table>
 
