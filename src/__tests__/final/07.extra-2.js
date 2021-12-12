@@ -9,7 +9,7 @@ import EasyButton from '../../components/easy-button'
 
 function renderWithProviders(ui, {theme = 'light', ...options} = {}) {
   const Wrapper = ({children}) => (
-    <ThemeProvider value={[theme, () => {}]}>{children}</ThemeProvider>
+    <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
   )
   return render(ui, {wrapper: Wrapper, ...options})
 }
