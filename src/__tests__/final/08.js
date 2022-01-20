@@ -6,8 +6,8 @@ import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import useCounter from '../../components/use-counter'
 
-function UseCounterHookExample() {
-  const {count, increment, decrement} = useCounter()
+function UseCounterHookExample(props) {
+  const {count, increment, decrement} = useCounter(props)
   return (
     <div>
       <div>Current count: {count}</div>

@@ -8,8 +8,8 @@ import useCounter from '../../components/use-counter'
 
 test('exposes the count and increment/decrement functions', () => {
   let result
-  function TestComponent() {
-    result = useCounter()
+  function TestComponent(props) {
+    result = useCounter(props)
     return null
   }
   render(<TestComponent />)
