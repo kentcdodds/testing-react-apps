@@ -8,11 +8,11 @@ import useCounter from '../../components/use-counter'
 
 function setup({initialProps} = {}) {
   const result = {}
-  function TestComponent(props) {
-    result.current = useCounter(props)
+  function TestComponent() {
+    result.current = useCounter(initialProps)
     return null
   }
-  render(<TestComponent {...initialProps} />)
+  render(<TestComponent />)
   return result
 }
 
