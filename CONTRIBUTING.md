@@ -40,5 +40,5 @@ Also, please watch the repo and respond to questions/bug reports/feature
 requests! Thanks!
 
 [egghead]:
-  https://kentcdodds.com/blog/introducing-how-to-contribute-to-open-source
+  https://kcd.im/pull-request
 [issues]: https://github.com/kentcdodds/testing-react-apps/issues
