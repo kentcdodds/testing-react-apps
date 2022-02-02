@@ -33,4 +33,5 @@ test('counter increments and decrements when the buttons are clicked', () => {
   })
   decrement.dispatchEvent(decrementClickEvent)
   expect(message.textContent).toBe('Current count: 0')
+  div.remove()
 })
