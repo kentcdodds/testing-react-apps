@@ -215,6 +215,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Joao-pina-fernandes",
+      "name": "João Pina Fernandes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7046309?v=4",
+      "profile": "https://www.linkedin.com/in/joao-fernandes-75b9a763/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
