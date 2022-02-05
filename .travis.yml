@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - '14'
+cache:
+  yarn: true
+  directories:
+    - node_modules
+script:
+  - npm test
+before_deploy:
+  - npm global add travis-ci-cloudfront-invalidation
+  - npm run build
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $S3_BUCKET
+  skip_cleanup: true
+  local-dir: dist
+  on:
+    branch: main
+after_deploy:
+  - travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -c $CLOUDFRONT_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST

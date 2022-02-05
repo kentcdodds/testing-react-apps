@@ -22,7 +22,8 @@
     "lint": "eslint .",
     "validate": "npm-run-all --parallel lint test:coverage build",
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
-    "setup": "node setup"
+    "setup": "node setup",
+    "deploy": "aws s3 cp public/ s3://thetrailblazer.ca --recursive"
   },
   "husky": {
     "hooks": {
