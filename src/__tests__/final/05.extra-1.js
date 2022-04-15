@@ -26,9 +26,9 @@ test(`logging in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
-  userEvent.click(screen.getByRole('button', {name: /submit/i}))
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+  await userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
 

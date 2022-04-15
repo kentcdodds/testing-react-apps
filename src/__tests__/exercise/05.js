@@ -32,10 +32,10 @@ test(`logging in displays the user's username`, async () => {
   render(<Login />)
   const {username, password} = buildLoginForm()
 
-  userEvent.type(screen.getByLabelText(/username/i), username)
-  userEvent.type(screen.getByLabelText(/password/i), password)
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+  await userEvent.type(screen.getByLabelText(/password/i), password)
   // 🐨 uncomment this and you'll start making the request!
-  // userEvent.click(screen.getByRole('button', {name: /submit/i}))
+  // await userEvent.click(screen.getByRole('button', {name: /submit/i}))
 
   // as soon as the user hits submit, we render a spinner to the screen. That
   // spinner has an aria-label of "loading" for accessibility purposes, so
