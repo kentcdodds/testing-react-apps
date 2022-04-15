@@ -15,7 +15,7 @@ test('submitting the form calls onSubmit with username and password', () => {
   // 🐨 render the login with your handleSubmit function as the onSubmit prop
   //
   // 🐨 get the username and password fields via `getByLabelText`
-  // 🐨 use userEvent.type to change the username and password fields to
+  // 🐨 use `await userEvent.type...` to change the username and password fields to
   //    whatever you want
   //
   // 🐨 click on the button with the text "Submit"
