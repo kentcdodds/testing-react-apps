@@ -224,6 +224,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "joshjm",
+      "name": "Josh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21700579?v=4",
+      "profile": "https://github.com/joshjm",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
