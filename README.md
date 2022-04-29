@@ -205,6 +205,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/skgyan"><img src="https://avatars.githubusercontent.com/u/5046860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sushil Kumar</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=skgyan" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/joao-fernandes-75b9a763/"><img src="https://avatars.githubusercontent.com/u/7046309?v=4?s=100" width="100px;" alt=""/><br /><sub><b>João Pina Fernandes</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=Joao-pina-fernandes" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/joshjm"><img src="https://avatars.githubusercontent.com/u/21700579?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Josh</b></sub></a><br /><a href="https://github.com/kentcdodds/testing-react-apps/commits?author=joshjm" title="Documentation">📖</a></td>
   </tr>
 </table>
 
