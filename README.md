@@ -43,7 +43,8 @@
 It's recommended you run everything in the same environment you work in every
 day, but if you don't want to set up the repository locally, you can get started
 in one click with [Gitpod](https://gitpod.io),
-[CodeSandbox](https://codesandbox.io/s/github/kentcdodds/testing-react-apps), or by following the [video demo](https://www.youtube.com/watch?v=gCoVJm3hGk4)
+[CodeSandbox](https://codesandbox.io/s/github/kentcdodds/testing-react-apps), or
+by following the [video demo](https://www.youtube.com/watch?v=gCoVJm3hGk4)
 instructions for [GitHub Codespaces](https://github.com/features/codespaces).
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/kentcdodds/testing-react-apps)
@@ -107,12 +108,6 @@ setup the project with the following command:
 ```bash
 docker-compose up
 ```
-
-It's recommended you run everything locally in the same environment you work in
-every day, but if you're having issues getting things set up, you can also set
-this up using [GitHub Codespaces](https://github.com/features/codespaces)
-([video demo](https://www.youtube.com/watch?v=gCoVJm3hGk4)) or
-[Codesandbox](https://codesandbox.io/s/github/kentcdodds/testing-react-apps).
 
 ## Running the app
 
