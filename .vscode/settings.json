@@ -4,7 +4,9 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Dank Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
-  "editor.rulers": [80],
+  "editor.rulers": [
+    80
+  ],
   "editor.snippetSuggestions": "top",
   "editor.wordBasedSuggestions": false,
   "editor.suggest.localityBonus": true,
@@ -54,6 +56,9 @@
   },
   "workbench.colorTheme": "Night Owl",
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.editorAssociations": {
+    "*.md": "vscode.markdown.preview.editor"
+  },
   "breadcrumbs.enabled": true,
   "grunt.autoDetect": "off",
   "gulp.autoDetect": "off",
