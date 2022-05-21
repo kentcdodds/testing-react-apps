@@ -4,9 +4,7 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Dank Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
   "editor.snippetSuggestions": "top",
   "editor.wordBasedSuggestions": false,
   "editor.suggest.localityBonus": true,
@@ -38,20 +36,21 @@
     "typescriptreact"
   ],
   "eslint.options": {
-    "env": {
-      "browser": true,
-      "jest/globals": true,
-      "es6": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2019,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
+    "overrideConfig": {
+      "env": {
+        "browser": true,
+        "es6": true
+      },
+      "parserOptions": {
+        "ecmaVersion": 2019,
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "rules": {
+        "no-debugger": "off"
       }
-    },
-    "rules": {
-      "no-debugger": "off"
     }
   },
   "workbench.colorTheme": "Night Owl",
