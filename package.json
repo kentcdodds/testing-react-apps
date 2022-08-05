@@ -9,7 +9,7 @@
   "main": "index.js",
   "engines": {
     "node": "14 || 16 || 18",
-    "npm": ">=6"
+    "npm": ">=8.16.0"
   },
   "scripts": {
     "build": "react-scripts build",
