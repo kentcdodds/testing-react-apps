@@ -8,7 +8,7 @@ import {createRoot} from 'react-dom/client'
 import Counter from '../../components/counter'
 
 // NOTE: this is a new requirement in React 18
-// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#configuring-your-testing-environment
+// https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment
 // Luckily, it's handled for you by React Testing Library :)
 global.IS_REACT_ACT_ENVIRONMENT = true
 
