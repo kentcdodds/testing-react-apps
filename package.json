@@ -24,7 +24,6 @@
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
     "setup": "node setup"
   },
-  "husky": {
   "keywords": [],
   "dependencies": {
     "import-all.macro": "^3.1.0",
