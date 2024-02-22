@@ -3,9 +3,11 @@
 
 import * as React from 'react'
 import {render, fireEvent} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Counter from '../../components/counter'
 
-test('counter increments and decrements when the buttons are clicked', () => {
+test('counter increments and decrements when the buttons are clicked', async () => {
+  const user = userEvent.setup()
   const {getAllByRole, getByText} = render(<Counter />)
 
   const [decrement, increment] = getAllByRole('button')
@@ -15,5 +17,21 @@ test('counter increments and decrements when the buttons are clicked', () => {
   expect(message).toHaveTextContent('Current count: 1')
 
   fireEvent.click(decrement)
+  expect(message).toHaveTextContent('Current count: 0')
+
+  increment.focus()
+  await user.keyboard('{enter}')
+  expect(message).toHaveTextContent('Current count: 1')
+
+  decrement.focus()
+  await user.keyboard('{enter}')
+  expect(message).toHaveTextContent('Current count: 0')
+
+  increment.focus()
+  await user.keyboard(' ')
+  expect(message).toHaveTextContent('Current count: 1')
+
+  decrement.focus()
+  await user.keyboard(' ')
   expect(message).toHaveTextContent('Current count: 0')
 })
