@@ -23,7 +23,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   await user.type(passwordInput, password)
   await user.click(submitButton)
 
-  expect(mockHandleSubmit).toHaveBeenCalled()
+  expect(mockHandleSubmit).toHaveBeenCalledTimes(1)
   expect(mockHandleSubmit).toHaveBeenCalledWith({username, password})
 })
 
