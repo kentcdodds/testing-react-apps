@@ -9,10 +9,8 @@ import Login from '../../components/login'
 test('submitting the form calls onSubmit with username and password', async () => {
   const user = userEvent.setup()
 
-  let submittedData
-  const handleSubmit = data => (submittedData = data)
-
-  render(<Login onSubmit={handleSubmit} />)
+  const mockHandleSubmit = jest.fn()
+  render(<Login onSubmit={mockHandleSubmit} />)
 
   const usernameInput = screen.getByLabelText('Username')
   const passwordInput = screen.getByLabelText('Password')
@@ -25,7 +23,8 @@ test('submitting the form calls onSubmit with username and password', async () =
   await user.type(passwordInput, password)
   await user.click(submitButton)
 
-  expect(submittedData).toEqual({username, password})
+  expect(mockHandleSubmit).toHaveBeenCalled()
+  expect(mockHandleSubmit).toHaveBeenCalledWith({username, password})
 })
 
 /*
