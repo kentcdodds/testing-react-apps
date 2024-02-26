@@ -4,7 +4,15 @@
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import faker from 'faker'
 import Login from '../../components/login'
+
+function buildLoginForm() {
+  return {
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+  }
+}
 
 test('submitting the form calls onSubmit with username and password', async () => {
   const user = userEvent.setup()
@@ -16,8 +24,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   const passwordInput = screen.getByLabelText('Password')
   const submitButton = screen.getByRole('button', {name: 'Submit'})
 
-  const username = 'john@email.com'
-  const password = 'password'
+  const {username, password} = buildLoginForm()
 
   await user.type(usernameInput, username)
   await user.type(passwordInput, password)
