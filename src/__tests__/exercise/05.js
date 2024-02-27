@@ -8,6 +8,7 @@ import {build, fake} from '@jackfranklin/test-data-bot'
 import {setupServer} from 'msw/node'
 import Login from '../../components/login-submission'
 import {handlers} from 'test/server-handlers'
+import {rest} from 'msw'
 
 const buildLoginForm = build({
   fields: {
@@ -19,6 +20,7 @@ const buildLoginForm = build({
 const server = setupServer(...handlers)
 
 beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 test(`logging in displays the user's username`, async () => {
@@ -49,14 +51,7 @@ test(`logging in without username displays error`, async () => {
   await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
 
   const error = screen.getByRole('alert')
-  expect(error).toMatchInlineSnapshot(`
-    <div
-      role="alert"
-      style="color: red;"
-    >
-      username required
-    </div>
-  `)
+  expect(error.textContent).toMatchInlineSnapshot(`"username required"`)
 })
 
 test(`logging in without password displays error`, async () => {
@@ -71,12 +66,26 @@ test(`logging in without password displays error`, async () => {
   await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
 
   const error = screen.getByRole('alert')
-  expect(error).toMatchInlineSnapshot(`
-    <div
-      role="alert"
-      style="color: red;"
-    >
-      password required
-    </div>
-  `)
+  expect(error.textContent).toMatchInlineSnapshot(`"password required"`)
+})
+
+test(`unknown server error displays the error message`, async () => {
+  const errorMessage = 'server is down'
+  server.use(
+    rest.post(
+      'https://auth-provider.example.com/api/login',
+      async (req, res, ctx) => {
+        return res(ctx.status(500), ctx.json({message: errorMessage}))
+      },
+    ),
+  )
+
+  render(<Login />)
+
+  await userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
+
+  const error = screen.getByRole('alert')
+  expect(error).toHaveTextContent(errorMessage)
 })
