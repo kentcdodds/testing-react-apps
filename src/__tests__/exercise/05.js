@@ -36,3 +36,33 @@ test(`logging in displays the user's username`, async () => {
   const message = screen.getByText(/welcome/i)
   expect(message).toHaveTextContent(`Welcome ${username}`)
 })
+
+test(`logging in without username displays error`, async () => {
+  render(<Login />)
+
+  const {password} = buildLoginForm()
+
+  await userEvent.type(screen.getByLabelText(/password/i), password)
+
+  await userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
+
+  const error = screen.getByRole('alert')
+  expect(error).toHaveTextContent('username required')
+})
+
+test(`logging in without password displays error`, async () => {
+  render(<Login />)
+
+  const {username} = buildLoginForm()
+
+  await userEvent.type(screen.getByLabelText(/username/i), username)
+
+  await userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
+
+  const error = screen.getByRole('alert')
+  expect(error).toHaveTextContent('password required')
+})
