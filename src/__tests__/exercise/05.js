@@ -49,7 +49,14 @@ test(`logging in without username displays error`, async () => {
   await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
 
   const error = screen.getByRole('alert')
-  expect(error).toHaveTextContent('username required')
+  expect(error).toMatchInlineSnapshot(`
+    <div
+      role="alert"
+      style="color: red;"
+    >
+      username required
+    </div>
+  `)
 })
 
 test(`logging in without password displays error`, async () => {
@@ -64,5 +71,12 @@ test(`logging in without password displays error`, async () => {
   await waitForElementToBeRemoved(screen.getByLabelText('loading...'))
 
   const error = screen.getByRole('alert')
-  expect(error).toHaveTextContent('password required')
+  expect(error).toMatchInlineSnapshot(`
+    <div
+      role="alert"
+      style="color: red;"
+    >
+      password required
+    </div>
+  `)
 })
