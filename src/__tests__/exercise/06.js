@@ -4,11 +4,9 @@
 import * as React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import Location from '../../examples/location'
+import {useCurrentPosition} from 'react-use-geolocation'
 
-window.navigator.geolocation = {
-  getCurrentPosition: jest.fn(),
-}
-
+jest.mock('react-use-geolocation')
 function deferred() {
   let resolve, reject
   const promise = new Promise((res, rej) => {
@@ -32,21 +30,23 @@ test('displays the users current location', async () => {
     timestamp: 1709213291906,
   }
 
-  const {promise, resolve, reject} = deferred()
+  let setReturnValue
+  function useMockCurrentPosition() {
+    const [state, setState] = React.useState([null, null])
+    setReturnValue = setState
+    return state
+  }
 
-  window.navigator.geolocation.getCurrentPosition.mockImplementation(
-    (success, error, options) => {
-      promise.then(() => success(fakeGeolocationPosition)).catch(() => error())
-    },
-  )
+  useCurrentPosition.mockImplementation(useMockCurrentPosition)
 
   render(<Location />)
 
   expect(screen.queryByLabelText('loading...')).toBeInTheDocument()
 
-  await act(async () => resolve())
+  act(() => setReturnValue([fakeGeolocationPosition, null]))
 
-  expect(screen.queryByLabelText('loading...')).toBeNull()
+  expect(screen.queryByLabelText('loading...')).not.toBeInTheDocument()
+
   expect(screen.getByText(/latitude:/i)).toHaveTextContent(
     `Latitude: 40.746508545837685`,
   )
