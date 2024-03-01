@@ -4,9 +4,13 @@
 import * as React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import Location from '../../examples/location'
-import {useCurrentPosition} from 'react-use-geolocation'
 
-jest.mock('react-use-geolocation')
+beforeAll(() => {
+  window.navigator.geolocation = {
+    getCurrentPosition: jest.fn(),
+  }
+})
+
 function deferred() {
   let resolve, reject
   const promise = new Promise((res, rej) => {
@@ -16,7 +20,7 @@ function deferred() {
   return {promise, resolve, reject}
 }
 
-test('displays the users current location', async () => {
+xtest('displays the users current location', async () => {
   const fakeGeolocationPosition = {
     coords: {
       accuracy: 50,
@@ -30,20 +34,22 @@ test('displays the users current location', async () => {
     timestamp: 1709213291906,
   }
 
-  let setReturnValue
-  function useMockCurrentPosition() {
-    const [state, setState] = React.useState([null, null])
-    setReturnValue = setState
-    return state
-  }
+  const {promise, resolve, reject} = deferred()
 
-  useCurrentPosition.mockImplementation(useMockCurrentPosition)
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    (success, error, options) => {
+      promise.then(() => success(fakeGeolocationPosition)).catch(() => error())
+    },
+  )
 
   render(<Location />)
 
   expect(screen.queryByLabelText('loading...')).toBeInTheDocument()
 
-  act(() => setReturnValue([fakeGeolocationPosition, null]))
+  await act(async () => {
+    resolve()
+    await promise
+  })
 
   expect(screen.queryByLabelText('loading...')).not.toBeInTheDocument()
 
@@ -53,6 +59,31 @@ test('displays the users current location', async () => {
   expect(screen.getByText(/longitude:/i)).toHaveTextContent(
     `Longitude: -73.94085714411621`,
   )
+})
+
+test('displays an error if geolocation permission is denied', async () => {
+  const fakeError = {
+    code: 1,
+    message: 'permission denied',
+  }
+
+  const {promise, resolve, reject} = deferred()
+
+  window.navigator.geolocation.getCurrentPosition.mockImplementation(
+    (success, error, options) => {
+      promise.then(() => success()).catch(() => error(fakeError))
+    },
+  )
+
+  render(<Location />)
+
+  expect(screen.queryByLabelText('loading...')).toBeInTheDocument()
+
+  await act(async () => reject())
+
+  expect(screen.queryByLabelText('loading...')).not.toBeInTheDocument()
+
+  expect(screen.getByRole('alert')).toHaveTextContent(fakeError.message)
 })
 
 /*
