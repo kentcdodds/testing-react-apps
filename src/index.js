@@ -2,7 +2,7 @@ import './test/server'
 import './styles.css'
 
 import * as React from 'react'
-import ReactDOM from 'react-dom'
+import {createRoot} from 'react-dom/client'
 import {ErrorBoundary} from 'react-error-boundary'
 import importAll from 'import-all.macro'
 
@@ -11,9 +11,8 @@ const lazyComponents = {}
 
 for (const modulePath in allDynamicImports) {
   if (allDynamicImports.hasOwnProperty(modulePath)) {
-    lazyComponents[
-      modulePath.replace('./examples', '').replace(/.js$/, '')
-    ] = React.lazy(allDynamicImports[modulePath])
+    lazyComponents[modulePath.replace('./examples', '').replace(/.js$/, '')] =
+      React.lazy(allDynamicImports[modulePath])
   }
 }
 
@@ -64,4 +63,5 @@ function App() {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('⚛'))
+const root = createRoot(document.getElementById('⚛'))
+root.render(<App />)
