@@ -20,7 +20,7 @@ function deferred() {
   return {promise, resolve, reject}
 }
 
-xtest('displays the users current location', async () => {
+test('displays the users current location', async () => {
   const fakeGeolocationPosition = {
     coords: {
       accuracy: 50,
