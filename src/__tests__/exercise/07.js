@@ -7,12 +7,13 @@ import {ThemeProvider} from '../../components/theme'
 import EasyButton from '../../components/easy-button'
 import userEvent from '@testing-library/user-event'
 
-function Wrapper({children, ...props}) {
-  return <ThemeProvider {...props}>{children}</ThemeProvider>
-}
-function render(ui, options) {
+function render(ui, {theme = 'light', ...options} = {}) {
+  function Wrapper({children}) {
+    return <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
+  }
+
   return rtlRender(ui, {
-    wrapper: props => <Wrapper {...props} initialTheme={options.theme} />,
+    wrapper: Wrapper,
     ...options,
   })
 }
