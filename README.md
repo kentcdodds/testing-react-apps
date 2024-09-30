@@ -242,7 +242,7 @@ Thank you! https://kcd.im/tra-ws-feedback
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/github/workflow/status/kentcdodds/testing-react-apps/validate/main?logo=github&style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/kentcdodds/testing-react-apps/validate.yml?branch=main&logo=github&style=flat-square
 [build]: https://github.com/kentcdodds/testing-react-apps/actions?query=workflow%3Avalidate
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/kentcdodds/testing-react-apps/blob/main/LICENSE
