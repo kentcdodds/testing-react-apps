@@ -1,4 +1,5 @@
-name: validate
+name: validate and test
+
 on:
   push:
     branches:
@@ -6,25 +7,24 @@ on:
   pull_request:
     branches:
       - 'main'
+
 jobs:
   setup:
-    # ignore all-contributors PRs
-    if: ${{ !contains(github.head_ref, 'all-contributors') }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout repo
+      - name: checkout
         uses: actions/checkout@v3
 
-      - name: ⎔ Setup node
+      - name: node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+           node-version-file: .node-version
 
-      - name: npm 8
-        run: npm install --global npm@8
+      # - name: setup
+      #   run: npm run setup
 
-      - name: ▶️ Run setup script
-        run: npm run setup
+      - name: packages
+        run: npm ci --global npm@8
+
+      - name: tests
+        run: npm run test:coverage
